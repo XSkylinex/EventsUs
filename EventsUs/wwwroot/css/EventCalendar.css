@@ -1,0 +1,233 @@
+﻿body {
+    background: white;
+    font-family: 'Fjalla One', sans-serif;
+    color: #3d4a50;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    font-weight: normal;
+    font-size: 24px;
+    text-transform: uppercase;
+    height: 54px;
+}
+
+td {
+    /*border: 1px solid #eee;*/
+    height: 300px;
+    min-width: 193px;
+    padding: 0;
+    vertical-align: top;
+}
+
+.calHeader {
+    display: flex;
+    justify-content: space-between;
+    background: #f9a44a;
+    text-transform: uppercase;
+    height: 70px;
+    line-height: 70px;
+    min-width: 1351px;
+    -webkit-font-smoothing: antialiased;
+    padding: 5px;
+}
+
+.monthSelector {
+    width: 400px;
+    text-align: center;
+    font-size: 40px;
+    position: relative;
+}
+
+    .monthSelector:after {
+        margin-left: 5px;
+        content: "\25BE"
+    }
+
+.monthPicker {
+    color: #3d4a50;
+    position: absolute;
+    background: white;
+    width: 70%;
+    margin-left: 15%;
+    margin-top: 5px;
+    box-shadow: 0 8px 15px #3A3A3A;
+    display: none;
+    height: 350px;
+    overflow-y: scroll;
+}
+
+.monthPickerItem {
+    font-size: 24px;
+    line-height: 50px;
+    border-bottom: 1px solid #eee;
+    height: 50px;
+}
+
+.prevMonth, .nextMonth {
+    width: 200px;
+    font-size: 24px;
+    color: #0b626c;
+    cursor: default;
+}
+
+.prevMonth {
+    text-align: left;
+    padding-left: 20px;
+}
+
+    .prevMonth:before {
+        content: "\276E";
+        margin-right: 5px;
+    }
+
+.nextMonth {
+    text-align: right;
+    padding-right: 20px;
+}
+
+    .nextMonth:after {
+        content: "\276F";
+        margin-left: 5px;
+    }
+
+    .prevMonth:hover,
+    .nextMonth:hover,
+    .monthSelector:hover {
+        color: #007d8c;
+        cursor: pointer;
+    }
+
+.monthPickerItem:hover {
+    background: #eee;
+}
+
+.header {
+    background: #3d4a50;
+    color: #fff;
+}
+
+.dayWrapper {
+    padding: 6px 3px 4px 3px;
+}
+
+tr td:first-child .dayWrapper {
+    padding-left: 0px;
+}
+
+tr td:last-child .dayWrapper {
+    padding-right: 0px;
+}
+
+.dayContainer {
+    font-size: 20px;
+    border-width: 4px 0px 0px;
+    border-style: solid;
+    border-color: #8B9597;
+    height: 66px;
+    background: #CED2D3;
+    /*For image on container*/
+    background-size: 219px !important;
+    background-position: 0px !important;
+}
+
+    .dayContainer.event {
+        border-color: #61A0A5;
+        background: #C0DDE1;
+    }
+
+.dayTitle {
+    float: left;
+    margin-left: 10px;
+    margin-top: 18px;
+    text-transform: uppercase;
+}
+
+    .dayTitle.holiday:before {
+        content: "\2690";
+        margin-right: 5px;
+    }
+
+.dayBox {
+    float: right;
+    margin-top: 11px;
+    margin-right: 5px;
+    background: rgba(211,210,215,0.7); /*Hex -> CED2D3*/
+    line-height: 40px;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.contentContainer {
+    background: #F0F0F0;
+    height: 203px;
+    margin-top: 3px;
+    padding: 7px;
+}
+
+.contentItem {
+    font-size: 17px;
+    font-family: helvetica;
+    color: #037691;
+    margin: 5px 0px;
+    background: #F8F8F8;
+    padding: 7px;
+}
+
+.contentMore {
+    color: #037691;
+    float: right;
+}
+
+    .contentItem a, .contentMore a {
+        color: inherit;
+        text-decoration: inherit;
+    }
+
+.dayContainer.holiday {
+    border-color: #C08F93;
+}
+
+.dayContainer.holiday,
+.contentContainer.holiday {
+    background: #DDB7B4;
+}
+
+.dayTitle.holiday,
+.contentContainer.holiday,
+.contentItem.holiday,
+.contentMore.holiday {
+    color: #8F524F;
+}
+
+.dayContainer.selected {
+    border-color: #8B9093;
+}
+
+.dayContainer.selected,
+.contentContainer.selected {
+    background: #3D4A50;
+}
+
+.dayTitle.selected,
+.contentContainer.selected,
+.contentItem.selected,
+.contentMore.selected,
+.dayBox.selected {
+    color: #FBFFFF;
+}
+
+.dayBox.selected {
+    background: #656E73;
+    background: rgba(103,108,110,0.7);
+}
+
+.contentItem.selected {
+    background: #656E73;
+}
