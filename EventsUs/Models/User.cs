@@ -12,7 +12,7 @@ namespace EventsUs.Models
         public int age { get; set; }
 
         List<User> list_friednds = new List<User>();
-        List<Event> list_events = new List<Event>();
+       // List<Event> list_events = new List<Event>();
 
     }
 }
