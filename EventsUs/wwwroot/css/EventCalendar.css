@@ -1,7 +1,7 @@
 ﻿body {
     background: white;
     font-family: 'Fjalla One', sans-serif;
-    color: #3d4a50;
+    color: #890b65;
 }
 
 table {
@@ -27,7 +27,7 @@ td {
 .calHeader {
     display: flex;
     justify-content: space-between;
-    background: #f9a44a;
+    background: #3ad192;
     text-transform: uppercase;
     height: 70px;
     line-height: 70px;
@@ -71,7 +71,7 @@ td {
 .prevMonth, .nextMonth {
     width: 200px;
     font-size: 24px;
-    color: #0b626c;
+    color: #cc2c9e;
     cursor: default;
 }
 
@@ -107,7 +107,7 @@ td {
 }
 
 .header {
-    background: #3d4a50;
+    background: #13a01a;
     color: #fff;
 }
 
@@ -136,8 +136,8 @@ tr td:last-child .dayWrapper {
 }
 
     .dayContainer.event {
-        border-color: #61A0A5;
-        background: #C0DDE1;
+        border-color: #85b587;
+        background: #ccffce;
     }
 
 .dayTitle {
