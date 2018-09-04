@@ -172,6 +172,6 @@
         }
     }
 
-    initTemplateCalendar('#calendar', 9, 2016);
+    initTemplateCalendar('#calendar', 9, 2018);
 
 });
