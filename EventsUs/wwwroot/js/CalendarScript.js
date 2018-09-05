@@ -23,7 +23,7 @@
 
 
         //Table Main Title
-        var table = ['<div class="calHeader"><div class="prevMonth">Previous Month</div><div class="monthSelector">' + monthNames[d.getMonth()] + ' ' + d.getFullYear() + '<div class="monthPicker"></div></div><div class="nextMonth">Next Month</div></div>'];
+        var table = ['<div class="calHeader"><div class="prevMonth">⮜</div><div class="monthSelector">' + monthNames[d.getMonth()] + ' ' + d.getFullYear() + '<div class="monthPicker"></div></div><div class="nextMonth">➤ </div></div>'];
 
         //Table Header
         table.push('<table><tr class="header">');
