@@ -40,3 +40,25 @@
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+<div class="page-header">
+    <h2>Share <a href="https://imgbb.com/"><img src="https://image.ibb.co/bHc89e/facebook_1.png" alt="facebook_1" border="0"></a></h2>
+
+</div>
+<p>Click the button below to share this event on facebook</p>
+
+<div id="shareBtn" class="btn btn-success clearfix">Share</div>
+
+@*<p style="margin-top: 50px">
+  <hr />
+  <a class="btn btn-small"  href="https://developers.facebook.com/docs/sharing/reference/share-dialog">Share Dialog Documentation</a>
+</p>*@
+
+<script>
+document.getElementById('shareBtn').onclick = function() {
+  FB.ui({
+    method: 'share',
+    display: 'popup',
+    href: 'https://developers.facebook.com/docs/',
+  }, function(response){});
+}
+</script>
