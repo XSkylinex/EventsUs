@@ -43,10 +43,10 @@
                 + '<div class="dayBox">' + padLeftZeroes(d.getDate(), 2) + '</div>'
                 + '</div>'
                 + '<div class="contentContainer">'
-                + '<div class="contentItem"><a href="http://www.google.ca" target="_blank">Lorem ipsum dolor sit amet, consecte</a></div>'
-                + '<div class="contentItem"><a href="http://www.google.ca" target="_blank">Adipiscing elit amet, consectetur</a></div>'
-                + '<div class="contentItem"><a href="http://www.google.ca" target="_blank">Lorem ipsum dolor sit amet, consecte</a></div>'
-                + '<div class="contentMore"><a href="https://www.google.ca/?gws_rd=ssl#safe=off&q=do+a+barrel+roll" target="_blank">More ...</a></div>'
+                + '<div class="contentItem">Data</div>'
+                + '<div class="contentItem">Data</div>'
+                + '<div class="contentItem">Data</div>'
+                + '<div class="contentMore">More...</div>'
                 + '</div>'
                 + '</div></td>');
             if (d.getDay() % 7 == 6) {
@@ -172,6 +172,9 @@
         }
     }
 
-    initTemplateCalendar('#calendar', 9, 2018);
+    var today = new Date(); // init Calendar 
+    var initMonth = today.getDate() - 1;
+    var initYear = today.getFullYear();
+    initTemplateCalendar('#calendar', initMonth, initYear);
 
 });
