@@ -8,11 +8,43 @@
 @Html.Partial("_StatusMessage", Model.StatusMessage)
 <div class="row">
     <div class="col-md-6">
+
+        <label class="header">Profile Photo:</label>
+        <input type='file' onchange="readURL(this);" />
+        <img id="blah" src="http://placehold.it/180" alt="your image" />
+
+        @*<input id="image" type="file" name="profile_photo" placeholder="Photo" required="" capture>
+        <button type="submit" class="btn btn-default">Upload</button>*@
+
+
         <form id="profile-form" method="post">
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Username"></label>
                 <input asp-for="Username" class="form-control" disabled />
+            </div>
+
+            <script>
+                function readURL(input) {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+
+                        reader.onload = function (e) {
+                            $('#blah')
+                                .attr('src', e.target.result);
+                        };
+
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
+
+            </script>
+
+
+            <div class="form-group">
+                <label asp-for="Input.Name"></label>
+                <input asp-for="Input.Name" class="form-control" />
+                <span asp-validation-for="Input.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Input.Email"></label>
@@ -35,7 +67,12 @@
                 <input asp-for="Input.PhoneNumber" class="form-control" />
                 <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
             </div>
+
             <button type="submit" class="btn btn-default">Save</button>
+
+            <div class="form-group">
+                <label class="header">Your Events:</label>
+            </div>
         </form>
     </div>
 </div>

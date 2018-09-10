@@ -26,8 +26,9 @@ namespace EventsUs.Areas.Identity.Pages.Account.Manage
             _signInManager = signInManager;
             _emailSender = emailSender;
         }
-
         public string Username { get; set; }
+
+        
 
         public bool IsEmailConfirmed { get; set; }
 
@@ -42,9 +43,11 @@ namespace EventsUs.Areas.Identity.Pages.Account.Manage
             [Required]
             [EmailAddress]
             public string Email { get; set; }
+            public string Name { get; set; }
+
 
             [Phone]
-            [Display(Name = "Phone number")]
+            [Display(Name  = "Phone number")]
             public string PhoneNumber { get; set; }
         }
 
@@ -59,6 +62,7 @@ namespace EventsUs.Areas.Identity.Pages.Account.Manage
             var userName = await _userManager.GetUserNameAsync(user);
             var email = await _userManager.GetEmailAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            
 
             Username = userName;
 
