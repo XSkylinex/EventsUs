@@ -23,7 +23,7 @@
 
 
         //Table Main Title
-        var table = ['<div class="calHeader"><div class="prevMonth">Previous Month</div><div class="monthSelector">' + monthNames[d.getMonth()] + ' ' + d.getFullYear() + '<div class="monthPicker"></div></div><div class="nextMonth">Next Month</div></div>'];
+        var table = ['<div class="calHeader"><div class="prevMonth">Previous&nbsp;Month</div><div class="monthSelector">' + monthNames[d.getMonth()] + ' ' + d.getFullYear() + '<div class="monthPicker"></div></div><div class="nextMonth">Next&nbsp;Month</div></div>'];
 
         //Table Header
         table.push('<table><tr class="header">');
@@ -113,7 +113,7 @@
         $('.monthPicker').append(monthDivs.join('\n'));
 
         $('.monthPickerItem').click(function (e) {
-            // console.log(e);
+             console.log(e);
             var targProps = e.target.attributes;
             var month = parseInt(targProps["data-month"].value);
             var year = parseInt(targProps["data-year"].value);
@@ -124,7 +124,7 @@
 
         $('.nextMonth, .prevMonth').click(function (e) {
             if (e.target.className === "prevMonth") {
-                // console.log('prev');
+                 console.log('prev');
                 //month should be 0 based but due to correction in init func, we use 1 base
                 if (currMonth === 1) {
                     currMonth = 12;
@@ -133,7 +133,7 @@
                     currMonth--;
                 }
             } else if (e.target.className === "nextMonth") {
-                // console.log('next');
+                 console.log('next');
                 if (currMonth === 12) {
                     currMonth = 1;
                     currYear++;
@@ -141,8 +141,8 @@
                     currMonth++;
                 }
             }
-            // console.log(currMonth);
-            // console.log(currYear);
+             console.log(currMonth);
+             console.log(currYear);
             initTemplateCalendar('#calendar', currMonth, currYear);
         });
 

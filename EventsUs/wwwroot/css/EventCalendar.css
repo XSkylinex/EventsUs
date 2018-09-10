@@ -1,7 +1,7 @@
 ﻿body {
     background: white;
-    font-family: 'Fjalla One', sans-serif;
-    color: #890b65;
+    font-family: 'Georgia', sans-serif;
+    color: #d1d1d1;
 }
 
 table {
@@ -71,7 +71,7 @@ td {
 .prevMonth, .nextMonth {
     width: 200px;
     font-size: 24px;
-    color: #cc2c9e;
+    color: #f2f2f2;
     cursor: default;
 }
 

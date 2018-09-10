@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using EventsUs.Models;
 
 namespace EventsUs.Data
 {
@@ -12,5 +13,6 @@ namespace EventsUs.Data
             : base(options)
         {
         }
+        public DbSet<EventsUs.Models.Event> Event { get; set; }
     }
 }
