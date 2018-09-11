@@ -17,11 +17,69 @@
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
     </environment>
+    <script>
+        function onEvent(day, month, year) {
+            herf = "/Events/getAllEventByDate/";
+            console.log("day",day);
+            console.log("month",month);
+            console.log("year",year);
+            console.log("herf", herf);
+            $.ajax({
+                type: "GET",
+                url: herf,
+                data: {
+                    "day": day,
+                    "month": month,
+                    "year": year,
+                },
+                success: function (result) {
+                    console.log("success");
+                    console.log("result", result);
+                    id = 'contentContainer:' + day + "/" + month + "/" + year;
+                    console.log("id", id);
+                    document.getElementById(id).innerHTML = result;
+                },
+                error: function (response) {
+                    console.log("error");
+                }
+            });
 
-        <div id="calendar"></div>
+        }
 
+
+        function allDetails(day, month, year) {
+            herf = "/Events/getAllEventDetails";
+            console.log("day", day);
+            console.log("month", month);
+            console.log("year", year);
+            console.log("herf", herf);
+            $.ajax({
+                type: "GET",
+                url: herf,
+                data: {
+                    "day": day,
+                    "month": month,
+                    "year": year,
+                },
+                success: function (result) {
+                    console.log("success");
+                    console.log("result", result);
+                    id = 'contentContainer:' + day + "/" + month + "/" + year;
+                    console.log("id", id);
+                    document.getElementById(id).innerHTML = result;
+                },
+                error: function (response) {
+                    console.log("error");
+                }
+            });
+
+        }
+
+    </script>
+   
 </head>
 <body>
+<div id="calendar"></div>
 
     <partial name="_CookieConsentPartial" />
 
@@ -30,20 +88,20 @@
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/CalendarScript.js" asp-append-version="true"></script>
     </environment>
-<environment exclude="Development">
-    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
-            asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-            asp-fallback-test="window.jQuery"
-            crossorigin="anonymous"
-            integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
-    </script>
-    <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
-            asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-            asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-            crossorigin="anonymous"
-            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
-    </script>
-</environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script>
+    </environment>
 
 </body>
 </html>

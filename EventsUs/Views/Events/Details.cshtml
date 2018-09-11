@@ -4,6 +4,7 @@
     ViewData["Title"] = "Details";
 }
 
+
 <h2>Details</h2>
 
 <div>
@@ -68,33 +69,34 @@
         }
     </style>
     <script>
-        var Ireland = "new york"
-            
-            function initMap() {
-                geocoder = new google.maps.Geocoder();
-                map = new google.maps.Map(document.getElementById('map'), {
-                    center: { lat: 31.9730, lng: 34.7925 },
-                    zoom: 11
-                });
-                infoWindow = new google.maps.InfoWindow;
+        var Ireland = "@Model.Location";
 
-                // Try HTML5 geolocation.
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(function (position) {
-                        var pos = {
-                            lat: position.coords.latitude,
-                            lng: position.coords.longitude
-                        };
-                        map.setCenter(pos);
-                    }, function () {
-                        handleLocationError(true, infoWindow, map.getCenter());
-                    });
-                } else {
-                    // Browser doesn't support Geolocation
-                    handleLocationError(false, infoWindow, map.getCenter());
-                }
-                codeAddress(Ireland);
+            
+        function initMap() {
+            geocoder = new google.maps.Geocoder();
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 31.9730, lng: 34.7925 },
+                zoom: 11
+            });
+            infoWindow = new google.maps.InfoWindow;
+
+            // Try HTML5 geolocation.
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+                    map.setCenter(pos);
+                }, function () {
+                    handleLocationError(true, infoWindow, map.getCenter());
+                });
+            } else {
+                // Browser doesn't support Geolocation
+                handleLocationError(false, infoWindow, map.getCenter());
             }
+            codeAddress(Ireland);
+        }
         function codeAddress(address) {
             geocoder.geocode({ address: address }, function (results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {

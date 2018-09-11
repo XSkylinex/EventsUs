@@ -54,7 +54,8 @@ namespace EventsUs.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Date,Name,Description,Location,Private")] Event @event)
+        public async Task<IActionResult> Create([Bind("Id,Date,Name,Description,Location,Private")]
+            Event @event)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +63,7 @@ namespace EventsUs.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             return View(@event);
         }
 
@@ -78,6 +80,7 @@ namespace EventsUs.Controllers
             {
                 return NotFound();
             }
+
             return View(@event);
         }
 
@@ -86,7 +89,8 @@ namespace EventsUs.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Date,Name,Description,Location,Private")] Event @event)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Date,Name,Description,Location,Private")]
+            Event @event)
         {
             if (id != @event.Id)
             {
@@ -111,8 +115,10 @@ namespace EventsUs.Controllers
                         throw;
                     }
                 }
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(@event);
         }
 
@@ -148,6 +154,22 @@ namespace EventsUs.Controllers
         private bool EventExists(int id)
         {
             return _context.Event.Any(e => e.Id == id);
+        }
+
+
+        [HttpGet]
+        public ViewResult getAllEventByDate(int day, int month, int year)
+        {
+            var @event = _context.Event.Where(e => e.Date.Day == day && e.Date.Month == month && e.Date.Year == year);
+            return View(@event.ToList());
+        }
+
+        [HttpGet]
+        public ViewResult getAllEventDetails(int day, int month, int year)
+        {
+            var @event = _context.Event.Where(e => e.Date.Day == day && e.Date.Month == month && e.Date.Year == year);
+            return View(@event.ToList());
+
         }
     }
 }

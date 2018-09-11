@@ -1,0 +1,19 @@
+﻿@model IEnumerable<EventsUs.Models.Event>
+
+@*@{
+    Layout = null;
+}*@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    
+</head>
+<body>
+@foreach (var item in Model) {
+    <div class="contentItem">@item.Description</div>
+}
+
+</body>
+</html>

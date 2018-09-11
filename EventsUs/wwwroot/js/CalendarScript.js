@@ -42,11 +42,11 @@
                 + '<div class="dayTitle"></div>'
                 + '<div class="dayBox">' + padLeftZeroes(d.getDate(), 2) + '</div>'
                 + '</div>'
-                + '<div class="contentContainer">'
-                + '<div class="contentItem">Data</div>'
-                + '<div class="contentItem">Data</div>'
-                + '<div class="contentItem">Data</div>'
-                + '<div class="contentMore">More...</div>'
+                + '<div id="contentContainer:' + d.getDay() + "/" + d.getMonth() + "/" + d.getFullYear() + '" class="contentContainer" onmouseover="javaScript:allDetails(' + d.getDay() + ',' + d.getMonth() + ',' + d.getFullYear() +');">'
+                //+ '<div class="contentItem"><p onload="javaScript:allDetails();"></p></div>'
+                //+ '<div class="contentItem">Data</div>'
+                //+ '<div class="contentItem">Data</div>'
+                //+ '<div class="contentMore"><button onclick="javaScript:onEvent(' + d.getDay() + ',' + d.getMonth() + ',' + d.getYear() +');">More...</button></div>'
                 + '</div>'
                 + '</div></td>');
             if (d.getDay() % 7 == 6) {
@@ -66,7 +66,7 @@
         for (var i = 0; i < holidays.length; i++) {
             var hd = new Date(Date.parse(holidays[i].date));
             if (hd.getMonth() === currMonth - 1) {
-                var id = '#day' + hd.getDate();
+                id = '#day' + hd.getDate();
                 setDayStyle(id, 'holiday');
                 $(id + ' .dayTitle').html(holidays[i].holiday);
             }
@@ -173,7 +173,7 @@
     }
 
     var today = new Date(); // init Calendar 
-    var initMonth = today.getDate() - 1;
+    var initMonth = today.getDate() - 2;
     var initYear = today.getFullYear();
     initTemplateCalendar('#calendar', initMonth, initYear);
 
