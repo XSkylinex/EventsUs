@@ -21,9 +21,9 @@
         function onEvent(day, month, year) {
             herf = "/Events/getAllEventByDate/";
             console.log("day",day);
-            console.log("month",month);
-            console.log("year",year);
-            console.log("herf", herf);
+            //console.log("month",month);
+            //console.log("year",year);
+            //console.log("herf", herf);
             $.ajax({
                 type: "GET",
                 url: herf,
@@ -33,14 +33,14 @@
                     "year": year,
                 },
                 success: function (result) {
-                    console.log("success");
-                    console.log("result", result);
+                    //console.log("success");
+                    //console.log("result", result);
                     id = 'contentContainer:' + day + "/" + month + "/" + year;
-                    console.log("id", id);
+                    //console.log("id", id);
                     document.getElementById(id).innerHTML = result;
                 },
                 error: function (response) {
-                    console.log("error");
+                    //console.log("error");
                 }
             });
 
@@ -49,10 +49,10 @@
 
         function allDetails(day, month, year) {
             herf = "/Events/getAllEventDetails";
-            console.log("day", day);
-            console.log("month", month);
-            console.log("year", year);
-            console.log("herf", herf);
+            //console.log("day", day);
+            //console.log("month", month);
+            //console.log("year", year);
+            //console.log("herf", herf);
             $.ajax({
                 type: "GET",
                 url: herf,
@@ -62,20 +62,22 @@
                     "year": year,
                 },
                 success: function (result) {
-                    console.log("success");
-                    console.log("result", result);
+                    //console.log("success");
+                    //console.log("result", result);
                     id = 'contentContainer:' + day + "/" + month + "/" + year;
-                    console.log("id", id);
+                    //console.log("id", id);
                     document.getElementById(id).innerHTML = result;
                 },
                 error: function (response) {
-                    console.log("error");
+                    //console.log("error");
                 }
             });
 
         }
 
     </script>
+    
+    
    
 </head>
 <body>

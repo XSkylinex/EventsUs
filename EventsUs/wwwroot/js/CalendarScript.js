@@ -36,23 +36,28 @@
         for (var i = 0; i < d.getDay(); i++) {
             table.push('<td><div class="dayWrapper"><div class="dayContainer"></div><div class="contentContainer"></div></div></td>');
         }
+        var day = 1;
         while (d.getMonth() == month) {
+            m = month + 1;
             table.push('<td><div id="day' + d.getDate() + '" class="dayWrapper">'
                 + '<div class="dayContainer event">'
                 + '<div class="dayTitle"></div>'
                 + '<div class="dayBox">' + padLeftZeroes(d.getDate(), 2) + '</div>'
                 + '</div>'
-                + '<div id="contentContainer:' + d.getDay() + "/" + d.getMonth() + "/" + d.getFullYear() + '" class="contentContainer" onmouseover="javaScript:allDetails(' + d.getDay() + ',' + d.getMonth() + ',' + d.getFullYear() +');">'
+                + '<script> document.getElementById("contentContainer:' + day + '/' + m + '/' + d.getFullYear() + '").addEventListener("load",allDetails(' + day+','+m+','+ d.getFullYear()+'))</script >'
+                + '<div id="contentContainer:' + day + "/" + m+ "/" + d.getFullYear() + '" class="contentContainer">'
                 //+ '<div class="contentItem"><p onload="javaScript:allDetails();"></p></div>'
                 //+ '<div class="contentItem">Data</div>'
                 //+ '<div class="contentItem">Data</div>'
                 //+ '<div class="contentMore"><button onclick="javaScript:onEvent(' + d.getDay() + ',' + d.getMonth() + ',' + d.getYear() +');">More...</button></div>'
                 + '</div>'
                 + '</div></td>');
+            
             if (d.getDay() % 7 == 6) {
                 table.push('</tr><tr>');
             }
             d.setDate(d.getDate() + 1);
+            day++;
         }
 
         //Table End Dates
