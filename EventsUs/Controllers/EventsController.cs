@@ -20,9 +20,16 @@ namespace EventsUs.Controllers
         }
 
         // GET: Events
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View(await _context.Event.ToListAsync());
+            var events = from e in _context.Event
+                            select e;
+            if(!string.IsNullOrEmpty(searchString))
+            {
+                events = events.Where(e => e.Name.Contains(searchString));
+            }
+            return View(events);
+            //return View(await _context.Event.ToListAsync());
         }
 
         // GET: Events/Details/5
