@@ -126,7 +126,7 @@
 
 
 <div class="page-header">
-    <h2>Share <a href="https://imgbb.com/"><img src="https://image.ibb.co/bHc89e/facebook_1.png" alt="facebook_1" border="0"></a></h2>
+    <h2>Share<img src="https://image.ibb.co/bHc89e/facebook_1.png" alt="facebook_1" border="0"></h2>
 
 </div>
 <p>Click the button below to share this event on facebook</p>
@@ -145,4 +145,24 @@
             href: 'https://developers.facebook.com/docs/',
         }, function (response) { });
     }
+</script>
+
+
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: 738916466500294,
+            autoLogAppEvents: true,
+            xfbml: true,
+            version: 'v3.1'
+        });
+    };
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
 </script>
