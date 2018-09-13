@@ -14,7 +14,7 @@ namespace EventsUs.Controllers
 {
     public class EventsController : Controller
     {
-        public readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
         public EventsController(ApplicationDbContext context)
         {
@@ -82,7 +82,7 @@ namespace EventsUs.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Date,Name,Description,Location,PrivOrPubl")]
+        public async Task<IActionResult> Create([Bind("Id,Date,Name,Description,Location,Private")]
             Event @event)
         {
             if (ModelState.IsValid)
@@ -117,7 +117,7 @@ namespace EventsUs.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Date,Name,Description,Location,PrivOrPubl")]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Date,Name,Description,Location,Private")]
             Event @event)
         {
             if (id != @event.Id)
@@ -179,7 +179,7 @@ namespace EventsUs.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public bool EventExists(int id)
+        private bool EventExists(int id)
         {
             return _context.Event.Any(e => e.Id == id);
         }
