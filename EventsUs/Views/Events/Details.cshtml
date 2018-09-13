@@ -36,18 +36,13 @@
             @Html.DisplayFor(model => model.Location)
         </dd>
         <dt>
-           @* @Html.DisplayNameFor(model => model.Private)*@
+            @* @Html.DisplayNameFor(model => model.Private)*@
         </dt>
         <dd>
             @*@Html.DisplayFor(model => model.Private)*@
         </dd>
     </dl>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,7 +66,7 @@
     <script>
         var Ireland = "@Model.Location";
 
-            
+
         function initMap() {
             geocoder = new google.maps.Geocoder();
             map = new google.maps.Map(document.getElementById('map'), {
@@ -126,7 +121,7 @@
 
 
 <div class="page-header">
-    <h2>Share<img src="https://image.ibb.co/bHc89e/facebook_1.png" alt="facebook_1" border="0"></h2>
+   Share<img src="https://image.ibb.co/bHc89e/facebook_1.png" alt="facebook_1" border="0">
 
 </div>
 <p>Click the button below to share this event on facebook</p>
@@ -166,3 +161,8 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 </script>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+

@@ -1,11 +1,17 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
 <!DOCTYPE html>
 <html>
 <head>
     <img src="https://image.ibb.co/k3keCz/log.png">
+    @using (Html.BeginForm("Index", "Events"))
+    {
+        <p>
+            <input type="text" name="SearchString">
+            <input type="submit" value="Search" />
+        </p>
+    }
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <environment include="Development">
