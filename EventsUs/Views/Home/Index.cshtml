@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<EventsUs.Models.Event>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -6,6 +8,14 @@
 <html>
 <head>
     <img src="https://image.ibb.co/k3keCz/log.png">
+
+    @using (Html.BeginForm("Index", "Events"))
+    {
+        <p>
+            <input type="text" name="SearchString">
+            <input type="submit" value="Search" />
+        </p>
+    }
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <environment include="Development">
@@ -20,7 +30,7 @@
     <script>
         function onEvent(day, month, year) {
             herf = "/Events/getAllEventByDate/";
-            console.log("day",day);
+            console.log("day", day);
             //console.log("month",month);
             //console.log("year",year);
             //console.log("herf", herf);
@@ -76,12 +86,12 @@
         }
 
     </script>
-    
-    
-   
+
+
+
 </head>
 <body>
-<div id="calendar"></div>
+    <div id="calendar"></div>
 
     <partial name="_CookieConsentPartial" />
 
