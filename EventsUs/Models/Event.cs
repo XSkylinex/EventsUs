@@ -13,6 +13,6 @@ namespace EventsUs.Models
         public String Description { get; set; }
         public string Location { get; set; }
         public List<User> UsersList = new List<User>();
-        public bool Private { set; get; }
+      //  public bool Private { set; get; }
     }
 }
