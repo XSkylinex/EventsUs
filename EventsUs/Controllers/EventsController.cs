@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EventsUs.Data;
 using EventsUs.Models;
+using System.Globalization;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 
 namespace EventsUs.Controllers
 {
@@ -20,11 +22,30 @@ namespace EventsUs.Controllers
         }
 
         // GET: Events
-        public async Task<IActionResult> Index(string searchString)
+        [HttpPost]
+        public IActionResult Index(string searchString/*, string groupBy*/)
         {
             var events = from e in _context.Event
-                            select e;
-            if(!string.IsNullOrEmpty(searchString))
+                         select e;
+            //if (groupBy == "City")
+            //{
+            //    var userNamesByID =
+            //         from u in _context.Event
+            //         group u by u.Location into g
+            //         select new { Location = g.Key, count = g.Count(), g.First().Name };
+            //    var group = new List<Event>();
+            //    foreach (var t in userNamesByID)
+            //    {
+            //        group.Add(new Event()
+            //        {
+            //            Location = t.Location,
+            //            numOfEvents = t.count,
+            //        });
+            //    }
+
+            //    return View(group);
+            //}
+            if (!string.IsNullOrEmpty(searchString))
             {
                 events = events.Where(e => e.Name.Contains(searchString));
             }
