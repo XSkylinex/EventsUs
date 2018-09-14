@@ -174,7 +174,7 @@ namespace EventsUs.Controllers
         [HttpGet]
         public ViewResult getAllEventDetails(int day, int month, int year)
         {
-            var @event = _context.Event.Where(e => e.Date.Day == day && e.Date.Month == month && e.Date.Year == year);
+            var @event = _context.Event.Where(e => e.Date.Day == day && e.Date.Month == month && e.Date.Year == year).Take(4);
             return View(@event.ToList());
 
         }

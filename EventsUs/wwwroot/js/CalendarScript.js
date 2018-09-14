@@ -178,7 +178,7 @@
     }
 
     var today = new Date(); // init Calendar 
-    var initMonth = today.getDate() - 2;
+    var initMonth = today.getMonth() +1;
     var initYear = today.getFullYear();
     initTemplateCalendar('#calendar', initMonth, initYear);
 

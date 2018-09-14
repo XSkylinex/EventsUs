@@ -6,7 +6,7 @@
 
 @foreach (var item in Model)
 {
-    <div class="contentItem">@item.Description</div>
+    <div class="contentItem"><a asp-action="Details" asp-route-id="@item.Id">@item.Description</a></div>
 }
 @{
     try
@@ -14,7 +14,7 @@
         if (Model.ToArray().Length > 3)
         {
             var m = Model.First();
-            <div class="contentMore"><button onclick="javaScript:onEvent(' + @m.Date.Day + ',' + @m.Date.Month + ',' + @m.Date.Year +');">More...</button></div>
+            <div class="contentMore"><button onclick="javaScript:onEvent(@m.Date.Day,@m.Date.Month,@m.Date.Year);">More...</button></div>
         }
     }
     catch (Exception e)

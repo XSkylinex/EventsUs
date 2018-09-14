@@ -10,10 +10,10 @@
 <head>
     
 </head>
-<body>
-@foreach (var item in Model) {
-    <div class="contentItem">@item.Description</div>
-}
-
+<body style="height: 150px; overflow: hidden;">
+    @foreach (var item in Model)
+    {
+        <div class="contentItem"><a asp-action="Details" asp-route-id="@item.Id">@item.Description</a></div>
+    }
 </body>
 </html>
