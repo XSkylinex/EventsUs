@@ -19,9 +19,9 @@
         ];
         var imageCollection = ["http://newpartners.uatisready.com/images/listings/CBCFlightofWhite1920x800_2628606653001467481.jpg?res=200", "http://newpartners.uatisready.com/images/listings/hist1_7854081356274510997.jpg?res=200", "http://newpartners.uatisready.com/images/listings/sens_2391958875910645713.jpg?res=200", "http://newpartners.uatisready.com/images/listings/1920800Garden_4119985474150635077.jpg?res=200", "http://newpartners.uatisready.com/images/listings/f044fa55-d527-4807-abbe-2d315a26c150.jpg?res=200"];
 
-        console.log('Creating Calendar...');
-        console.info('Month: ' + month);
-        console.info('Year: ' + year);
+        //console.log('Creating Calendar...');
+        //console.info('Month: ' + month);
+        //console.info('Year: ' + year);
         currMonth = month;
         currYear = year;
         month = month - 1;
@@ -112,10 +112,10 @@
 
         //Populate monthSelector with next 11 months
         var monthDivs = [];
-        var iterMonth = currMonth + 1;
+        var iterMonth = currMonth - 1;
         var iterYear = currYear;
         for (var i = 0; i < 11; i++) {
-            var monthName = monthNames[iterMonth - 1];
+            var monthName = monthNames[iterMonth -1];
             var yearName = iterYear;
             monthDivs.push('<div class="monthPickerItem" data-month="' + iterMonth + '" data-year="' + yearName + '">' + monthName + ' ' + yearName + '</div>');
             if (iterMonth === 12) { iterMonth = 1; iterYear++; }
@@ -124,7 +124,7 @@
         $('.monthPicker').append(monthDivs.join('\n'));
 
         $('.monthPickerItem').click(function (e) {
-             console.log(e);
+             //console.log(e);
             var targProps = e.target.attributes;
             var month = parseInt(targProps["data-month"].value);
             var year = parseInt(targProps["data-year"].value);
@@ -135,7 +135,7 @@
 
         $('.nextMonth, .prevMonth').click(function (e) {
             if (e.target.className === "prevMonth") {
-                 console.log('prev');
+                // console.log('prev');
                 //month should be 0 based but due to correction in init func, we use 1 base
                 if (currMonth === 1) {
                     currMonth = 12;
@@ -144,7 +144,7 @@
                     currMonth--;
                 }
             } else if (e.target.className === "nextMonth") {
-                 console.log('next');
+                 //console.log('next');
                 if (currMonth === 12) {
                     currMonth = 1;
                     currYear++;
@@ -152,8 +152,8 @@
                     currMonth++;
                 }
             }
-             console.log(currMonth);
-             console.log(currYear);
+            // console.log(currMonth);
+            // console.log(currYear);
             initTemplateCalendar('#calendar', currMonth, currYear);
         });
 
@@ -181,7 +181,7 @@
         function getRandomIntInclusive(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
         }
-    }
+    };
 
 
     initTemplateCalendar('#calendar', initMonth, initYear);

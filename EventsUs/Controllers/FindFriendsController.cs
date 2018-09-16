@@ -7,9 +7,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EventsUs.Data;
 using EventsUs.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace EventsUs.Controllers
 {
+
+   
+
+  
     public class FindFriendsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -135,7 +140,7 @@ namespace EventsUs.Controllers
 
             return View(findFriends);
         }
-
+      
         // POST: FindFriends/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -153,5 +158,5 @@ namespace EventsUs.Controllers
         }
     }
 
-  
+ 
 }
