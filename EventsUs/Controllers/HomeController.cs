@@ -5,11 +5,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using EventsUs.Models;
+using EventsUs.Data;
 
 namespace EventsUs.Controllers
 {
+    
     public class HomeController : Controller
     {
+
+
         public IActionResult Index()
         {
             return View();
