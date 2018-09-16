@@ -112,7 +112,7 @@
 
         //Populate monthSelector with next 11 months
         var monthDivs = [];
-        var iterMonth = currMonth - 1;
+        var iterMonth = currMonth;
         var iterYear = currYear;
         for (var i = 0; i < 11; i++) {
             var monthName = monthNames[iterMonth -1];
