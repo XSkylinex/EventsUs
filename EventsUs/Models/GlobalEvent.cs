@@ -5,15 +5,12 @@ using System.Threading.Tasks;
 
 namespace EventsUs.Models
 {
-    public class Event
+    public class GlobalEvent
     {
         public int Id { get; set; }
         public DateTime Date { get; set; }
         public String Name { get; set; }
         public String Description { get; set; }
         public string Location { get; set; }
-        public List<User> UsersList = new List<User>();
-      //  public bool Private { set; get; }
-      public string YoutubeId { get; set; }
     }
 }

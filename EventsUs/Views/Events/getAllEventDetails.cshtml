@@ -6,7 +6,7 @@
 
 @foreach (var item in Model)
 {
-    <div class="contentItem"><a asp-action="Details" asp-route-id="@item.Id">@item.Description</a></div>
+    <div class="contentItem"><a asp-action="Details" asp-route-id="@item.Id">@item.Name</a></div>
 }
 @{
     try
