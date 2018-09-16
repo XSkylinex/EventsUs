@@ -3,45 +3,72 @@
 @{
     ViewData["Title"] = "Details";
 }
-
-
 <h2>Details</h2>
-
 <div>
+
     <h4>Event</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Date)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Date)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Location)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Location)
-        </dd>
-        <dt>
-            @* @Html.DisplayNameFor(model => model.Private)*@
-        </dt>
-        <dd>
-            @*@Html.DisplayFor(model => model.Private)*@
-        </dd>
-    </dl>
+    <!DOCTYPE HTML>
+    <script language="JavaScript" type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script>
+    var apiCall = 'https://api.openweathermap.org/data/2.5/weather?q=@Model.Location&appid=445a541d4de4179f24779917c992e772';
+    $.getJSON(apiCall, weatherCallback);
+    function weatherCallback(weatherData) {
+        var cityName = weatherData.name;
+        var country = weatherData.sys.country;
+        var description = weatherData.weather[0].description;
+        $('.weatherResponse').append("The weather in " + cityName + " is " + description);
+    }
+    </script>
+    <html>
+    <head>
+        <script src="~/lib/jquery/dist/jquery.js">
+        </script>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>Js Bin</title>
+    </head>
+    <body>
+        <div class="weatherResponse">
+            <img src="https://image.ibb.co/mtn0Be/sun_rays_small_cloud.png" alt="sun_rays_small_cloud" border="0"></a>
+        </div>
+    </body>
+</html>
+
+
+
+<hr />
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.Date)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Date)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Name)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Name)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Description)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Description)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Location)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Location)
+    </dd>
+    <dt>
+        @* @Html.DisplayNameFor(model => model.Private)*@
+    </dt>
+    <dd>
+        @*@Html.DisplayFor(model => model.Private)*@
+    </dd>
+</dl>
 </div>
 <!DOCTYPE html>
 <html>
@@ -121,7 +148,7 @@
 
 
 <div class="page-header">
-   Share<img src="https://image.ibb.co/bHc89e/facebook_1.png" alt="facebook_1" border="0">
+    Share<img src="https://image.ibb.co/bHc89e/facebook_1.png" alt="facebook_1" border="0">
 
 </div>
 <p>Click the button below to share this event on facebook</p>

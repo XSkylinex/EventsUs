@@ -3,3 +3,28 @@
 }
 <h2>@ViewData["Title"]</h2>
 <h3>@ViewData["Message"]</h3>
+<!DOCTYPE HTML>
+<script language="JavaScript" type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    var apiCall = 'https://api.openweathermap.org/data/2.5/weather?q=paris&appid=445a541d4de4179f24779917c992e772';
+    $.getJSON(apiCall, weatherCallback);
+    function weatherCallback(weatherData) {
+        var cityName = weatherData.name;
+        var country = weatherData.sys.country;
+        var description = weatherData.weather[0].description;
+        $('.weatherResponse').append("The weather in " + cityName + " is " + description);
+    }
+</script>
+<html>
+<head>
+    <script src="~/lib/jquery/dist/jquery.js">
+    </script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Js Bin</title>
+</head>
+<body>
+    <div class="weatherResponse">
+    </div>
+</body>
+</html>
