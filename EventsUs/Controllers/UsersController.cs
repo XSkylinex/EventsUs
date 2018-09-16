@@ -20,8 +20,21 @@ namespace EventsUs.Controllers
             _context = context;
         }
 
+        public async Task<IActionResult> Index(string searchString)  //search users by username and user id
+        {
+            var user = from e in _context.Users
+                       select e;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                user = user.Where(e => e.UserName.Contains(searchString));
+            }
+          
+            return View(user);
+            
+        }
+
         // GET: Users
-        public IActionResult Index(string searchString)
+        public IActionResult Index1(string searchString)
         {
             var user = from e in _context.Users
                        select e;
