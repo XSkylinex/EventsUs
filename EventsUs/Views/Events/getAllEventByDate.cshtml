@@ -7,13 +7,22 @@
 <!DOCTYPE html>
 
 <html>
-<head>
-    
+<head >
+    <style>
+        div.ex1 {
+            background-color: lightblue;
+            width: 200px;
+            height: 203px;
+            overflow: scroll;
+        }
+    </style>
 </head>
-<body style="height: 150px; overflow: hidden;">
-    @foreach (var item in Model)
-    {
-        <div class="contentItem"><a asp-action="Details" asp-route-id="@item.Id">@item.Name</a></div>
-    }
+<body >
+    <div class="ex1">
+        @foreach (var item in Model)
+        {
+            <div class="contentItem"><a asp-action="Details" asp-route-id="@item.Id">@item.Name</a></div>
+        }
+</div>
 </body>
 </html>
