@@ -19,7 +19,7 @@ namespace EventsUs.Controllers
             _context = context;
 
         }
-       
+
 
         // GET: FindFriends
         public async Task<IActionResult> Index()
@@ -64,6 +64,7 @@ namespace EventsUs.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             return View(findFriends);
         }
 
@@ -80,6 +81,7 @@ namespace EventsUs.Controllers
             {
                 return NotFound();
             }
+
             return View(findFriends);
         }
 
@@ -113,8 +115,10 @@ namespace EventsUs.Controllers
                         throw;
                     }
                 }
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(findFriends);
         }
 
@@ -152,6 +156,4 @@ namespace EventsUs.Controllers
             return _context.FindFriends.Any(e => e.ID == id);
         }
     }
-
-  
 }
