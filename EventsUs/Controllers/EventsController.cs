@@ -20,13 +20,21 @@ namespace EventsUs.Controllers
         }
 
         // GET: Events
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(string searchString1, string searchString2, string searchString3)
         {
             var events = from e in _context.Event
                             select e;
-            if(!string.IsNullOrEmpty(searchString))
+            if(!string.IsNullOrEmpty(searchString1))
             {
-                events = events.Where(e => e.Name.Contains(searchString));
+                events = events.Where(e => e.Name.Contains(searchString1));
+            }
+            if (!string.IsNullOrEmpty(searchString2))
+            {
+                events = events.Where(e => e.Location.Contains(searchString2));
+            }
+            if (!string.IsNullOrEmpty(searchString3))
+            {
+                events = events.Where(e => e.Description.Contains(searchString3));
             }
             return View(events);
             //return View(await _context.Event.ToListAsync());
