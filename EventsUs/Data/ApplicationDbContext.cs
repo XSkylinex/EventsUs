@@ -14,5 +14,6 @@ namespace EventsUs.Data
         {
         }
         public DbSet<EventsUs.Models.Event> Event { get; set; }
+        public DbSet<EventsUs.Models.FindFriends> FindFriends { get; set; }
     }
 }

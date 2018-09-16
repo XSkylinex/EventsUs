@@ -14,5 +14,6 @@ namespace EventsUs.Models
         public string Location { get; set; }
         public List<User> UsersList = new List<User>();
       //  public bool Private { set; get; }
+      public string YoutubeId { get; set; }
     }
 }
