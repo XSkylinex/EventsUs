@@ -1,4 +1,8 @@
 ﻿$(document).ready(function () {
+    var today = new Date(); // init Calendar 
+    var initMonth = today.getMonth() + 1;
+    var initYear = today.getFullYear();
+
     var lastClickedElement = null;
     var currMonth, currYear;
     var initTemplateCalendar = function (id, month, year) {
@@ -7,10 +11,12 @@
         var arrayDayShort = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
         var arrayDayLong = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
         var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-        var holidays = [{
-            date: "Sep 19, 2016",
-            holiday: "Labour Day"
-        }];
+        var holidays = [
+            { date: "October 11", initYear, holiday: "Halloween" },
+            { date: "October 25", initYear, holiday: "christmas" },
+            { date: "April 21", initYear, holiday: "Easter" },
+            { date: "July 4", initYear, holiday: "4th of July" }
+        ];
         var imageCollection = ["http://newpartners.uatisready.com/images/listings/CBCFlightofWhite1920x800_2628606653001467481.jpg?res=200", "http://newpartners.uatisready.com/images/listings/hist1_7854081356274510997.jpg?res=200", "http://newpartners.uatisready.com/images/listings/sens_2391958875910645713.jpg?res=200", "http://newpartners.uatisready.com/images/listings/1920800Garden_4119985474150635077.jpg?res=200", "http://newpartners.uatisready.com/images/listings/f044fa55-d527-4807-abbe-2d315a26c150.jpg?res=200"];
 
         console.log('Creating Calendar...');
@@ -177,9 +183,7 @@
         }
     }
 
-    var today = new Date(); // init Calendar 
-    var initMonth = today.getMonth() +1;
-    var initYear = today.getFullYear();
+
     initTemplateCalendar('#calendar', initMonth, initYear);
 
 });
