@@ -20,15 +20,23 @@ namespace EventsUs.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index(string searchString)  //search users by username and user id
+        public async Task<IActionResult> Index(string searchString1, string searchString2, int searchString3)  //search users by username and user id
         {
             var user = from e in _context.Users
                        select e;
-            if (!string.IsNullOrEmpty(searchString))
+            if (!string.IsNullOrEmpty(searchString1))
             {
-                user = user.Where(e => e.UserName.Contains(searchString));
+                user = user.Where(e => e.Id.Contains(searchString1));
             }
-          
+            if (!string.IsNullOrEmpty(searchString2))
+            {
+                user = user.Where(e => e.UserName.Contains(searchString2));
+            }
+            if (searchString3!=0)
+            {
+                user = user.Where(e => e.age.Equals(searchString3));
+            }
+
             return View(user);
             
         }
