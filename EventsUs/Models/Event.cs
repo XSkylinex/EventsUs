@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Http;
 
 namespace EventsUs.Models
 {
@@ -13,7 +15,9 @@ namespace EventsUs.Models
         public String Description { get; set; }
         public string Location { get; set; }
         public List<User> UsersList = new List<User>();
-      //  public bool Private { set; get; }
-      public string YoutubeId { get; set; }
+        public bool PublicEvent { set; get; }
+        public string YoutubeId { get; set; }
+        public string adminId { get; set; }
+
     }
 }

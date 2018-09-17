@@ -1,4 +1,5 @@
-﻿@model EventsUs.Models.Event
+﻿
+@model EventsUs.Models.Event
 
 @{
     ViewData["Title"] = "Create";
@@ -40,7 +41,7 @@
             <div class="form-group">
                 <div class="checkbox">
                     <label>
-                        @*<input asp-for="Private" /> @Html.DisplayNameFor(model => model.Private)*@
+                        <input asp-for="PublicEvent" /> Public Event
                     </label>
                 </div>
             </div>
@@ -57,4 +58,5 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
 }
