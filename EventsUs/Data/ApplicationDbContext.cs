@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace EventsUs.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<User>
+    public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -19,7 +19,7 @@ namespace EventsUs.Data
         {
             base.OnModelCreating(builder);
 
-            const int RATINGS_AMNT = 20;
+           /* const int RATINGS_AMNT = 20;
 
             var pHasher = new PasswordHasher<User>();
 
@@ -102,10 +102,12 @@ namespace EventsUs.Data
                     RoleId = "1",
                     UserId = userID + ""
                 });
-            }
+            }*/
         }
 
         public DbSet<EventsUs.Models.Event> Event { get; set; }
         public DbSet<EventsUs.Models.FindFriends> FindFriends { get; set; }
+        public DbSet<EventsUs.Models.ApplicationUser> ApplicationUsers { get; set; }
+
     }
 }

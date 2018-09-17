@@ -14,7 +14,7 @@ namespace EventsUs.Models
         public String Name { get; set; }
         public String Description { get; set; }
         public string Location { get; set; }
-        public List<User> UsersList = new List<User>();
+        public List<ApplicationUser> UsersList = new List<ApplicationUser>();
         public bool PublicEvent { set; get; }
         public string YoutubeId { get; set; }
         public string adminId { get; set; }

@@ -20,9 +20,9 @@ namespace EventsUs.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index(string searchString1, string searchString2, int searchString3)  //search users by username and user id
+        public async Task<IActionResult> Index1(string searchString1, string searchString2, int searchString3)  //search users by username and user id
         {
-            var user = from e in _context.Users
+            var user = from e in _context.ApplicationUsers
                        select e;
             if (!string.IsNullOrEmpty(searchString1))
             {
@@ -42,11 +42,13 @@ namespace EventsUs.Controllers
         }
 
         // GET: Users
-        public IActionResult Index1(string searchString)
+        public IActionResult Index(string searchString)
         {
             var user = from e in _context.Users
                        select e;
-            return View(user);
+            var user2 = _context.Users.ToList();
+            ViewBag.Users = user2;
+            return View();
             //return View(await _context.Event.ToListAsync());
         }
 
@@ -58,14 +60,14 @@ namespace EventsUs.Controllers
                 return NotFound();
             }
 
-            var @user = await _context.Users
+            var user = await _context.Users
                 .FirstOrDefaultAsync(m => m.Id.Equals(id));
-            if (@user == null)
+            if (user == null)
             {
                 return NotFound();
             }
 
-            return View(@user);
+            return View(user);
         }
 
         // GET: Users/Create
@@ -80,16 +82,16 @@ namespace EventsUs.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Email,UserName,age")]
-            User @user)
+            ApplicationUser user)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(@user);
+                _context.Add(user);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
 
-            return View(@user);
+            return View(user);
         }
 
         // GET: Events/Edit/5
@@ -100,13 +102,13 @@ namespace EventsUs.Controllers
                 return NotFound();
             }
 
-            var @user = await _context.Users.FindAsync(id);
-            if (@user == null)
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
             {
                 return NotFound();
             }
 
-            return View(@user);
+            return View(user);
         }
 
         // POST: Events/Edit/5
@@ -115,9 +117,9 @@ namespace EventsUs.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, [Bind("Id,Email,UserName,age")]
-            User @user)
+            ApplicationUser user)
         {
-            if (!id.Equals(@user.Id))
+            if (!id.Equals(user.Id))
             {
                 return NotFound();
             }
@@ -126,12 +128,12 @@ namespace EventsUs.Controllers
             {
                 try
                 {
-                    _context.Update(@user);
+                    _context.Update(user);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UserExists(@user.Id))
+                    if (!UserExists(user.Id))
                     {
                         return NotFound();
                     }
@@ -144,7 +146,7 @@ namespace EventsUs.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            return View(@user);
+            return View(user);
         }
 
         // GET: Events/Delete/5
@@ -155,14 +157,14 @@ namespace EventsUs.Controllers
                 return NotFound();
             }
 
-            var @user = _context.Users
+            var user = _context.Users
                 .FirstOrDefault(m => m.Id.Equals(id));
-            if (@user == null)
+            if (user == null)
             {
                 return NotFound();
             }
 
-            return View(@user);
+            return View(user);
         }
 
         // POST: Users/Delete/5
@@ -170,8 +172,8 @@ namespace EventsUs.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var @user = await _context.Users.FindAsync(id);
-            _context.Users.Remove(@user);
+            var user = await _context.Users.FindAsync(id);
+            _context.Users.Remove(user);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

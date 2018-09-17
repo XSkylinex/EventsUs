@@ -1,5 +1,4 @@
-﻿@model IEnumerable<EventsUs.Models.User>
-
+﻿
 @{
     ViewData["Title"] = "Index";
 }
@@ -19,27 +18,29 @@
         <input type="submit" value="Search" />
     </p>
 }
-
+@{ 
+    List<Microsoft.AspNetCore.Identity.IdentityUser> identityUsers = ViewBag.Users;
+}
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.GetEnumerator().Current.Id)
+                @Html.DisplayNameFor(model => identityUsers.GetEnumerator().Current.Id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.GetEnumerator().Current.UserName)
+                @Html.DisplayNameFor(model => identityUsers.GetEnumerator().Current.UserName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.GetEnumerator().Current.Email)
+                @Html.DisplayNameFor(model => identityUsers.GetEnumerator().Current.Email)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.GetEnumerator().Current.age)
-            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => identityUsers.GetEnumerator().Current.age)
+            </th>*@
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in identityUsers)
         {
             <tr>
                 <td>
@@ -51,9 +52,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.age)
-                </td>
+                </td>*@
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
