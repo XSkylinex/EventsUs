@@ -38,6 +38,7 @@
                     @if (User.IsInRole("Admin"))
                     {
                         <li><a asp-area="Admin" asp-controller="AdminUsers" asp-action="Index">Admin Users</a></li>
+                        <li><a asp-area="Admin" asp-controller="GlobalEvents" asp-action="Index">Global Events</a></li>
                     }
                 </ul>
                 <partial name="_LoginPartial" />

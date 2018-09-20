@@ -13,5 +13,7 @@ namespace EventsUs.Data
         public DbSet<EventsUs.Models.Event> Event { get; set; }
 
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
+
+        public DbSet<EventsUs.Models.GlobalEvent> GlobalEvent { get; set; }
     }
 }

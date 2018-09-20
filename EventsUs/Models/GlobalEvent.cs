@@ -10,7 +10,7 @@ namespace EventsUs.Models
         public int Id { get; set; }
         public DateTime Date { get; set; }
         public String Name { get; set; }
-        public String Description { get; set; }
-        public string Location { get; set; }
+       // public String Description { get; set; }
+       // public string Location { get; set; }
     }
 }

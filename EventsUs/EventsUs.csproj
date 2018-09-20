@@ -33,6 +33,8 @@
     <Compile Remove="Data\Migrations\20180919162423_addApplicationUseToDb_name.Designer.cs" />
     <Compile Remove="Data\Migrations\20180919221800_test2.cs" />
     <Compile Remove="Data\Migrations\20180919221800_test2.Designer.cs" />
+    <Compile Remove="Migrations\20180920175700_globalevent.cs" />
+    <Compile Remove="Migrations\20180920175700_globalevent.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

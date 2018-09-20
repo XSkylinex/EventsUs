@@ -1,4 +1,8 @@
-﻿$(document).ready(function () {
+﻿
+var arrayDayShort = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
+var arrayDayLong = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+$(document).ready(function () {
     var today = new Date(); // init Calendar 
     var initMonth = today.getMonth() + 1;
     var initYear = today.getFullYear();
@@ -8,15 +12,14 @@
     var initTemplateCalendar = function (id, month, year) {
         var $cal = $(id);
         $cal = $($cal[0]);
-        var arrayDayShort = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
-        var arrayDayLong = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-        var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-        var holidays = [
-            { date: "October 11", initYear, holiday: "Halloween" },
-            { date: "October 25", initYear, holiday: "christmas" },
-            { date: "April 21", initYear, holiday: "Easter" },
-            { date: "July 4", initYear, holiday: "4th of July" }
-        ];
+        
+        //var holidays = [
+        //    { date: "October 11", initYear, holiday: "Halloween" },
+        //    { date: "October 25", initYear, holiday: "christmas" },
+        //    { date: "April 21", initYear, holiday: "Easter" },
+        //    { date: "July 4", initYear, holiday: "4th of July" }
+        //];
+        var holidays = getGlobalEvent(month);
         var imageCollection = ["http://newpartners.uatisready.com/images/listings/CBCFlightofWhite1920x800_2628606653001467481.jpg?res=200", "http://newpartners.uatisready.com/images/listings/hist1_7854081356274510997.jpg?res=200", "http://newpartners.uatisready.com/images/listings/sens_2391958875910645713.jpg?res=200", "http://newpartners.uatisready.com/images/listings/1920800Garden_4119985474150635077.jpg?res=200", "http://newpartners.uatisready.com/images/listings/f044fa55-d527-4807-abbe-2d315a26c150.jpg?res=200"];
 
         //console.log('Creating Calendar...');
@@ -73,15 +76,16 @@
         table.push('</tr></table>');
         $cal.html(table.join('\n'));
 
-        //Set holidays
-        for (var i = 0; i < holidays.length; i++) {
-            var hd = new Date(Date.parse(holidays[i].date));
-            if (hd.getMonth() === currMonth - 1) {
-                id = '#day' + hd.getDate();
-                setDayStyle(id, 'holiday');
-                $(id + ' .dayTitle').html(holidays[i].holiday);
-            }
-        }
+        ////Set holidays
+        //console.log("Set holidays", holidays);
+        //for (var i = 0; i < holidays.length; i++) {
+        //    var hd = new Date(Date.parse(holidays[i].date));
+        //    if (hd.getMonth() === currMonth - 1) {
+        //        id = '#day' + hd.getDate();
+        //        setDayStyle(id, 'holiday');
+        //        $(id + ' .dayTitle').html(holidays[i].holiday);
+        //    }
+        //}
 
         //Select event
         $cal.find('.dayWrapper').click(function () {
@@ -181,9 +185,62 @@
         function getRandomIntInclusive(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
         }
+
+        function getGlobalEvent(currMonth) {
+            //console.log("getGlobalEvent", "getGlobalEvent");
+            href = "Admin/GlobalEvents/getAllGlobalEvents/";
+            $.ajax({
+                type: "GET",
+                url: href,
+                success: function (result) {
+                    //console.log("success");
+                    //console.log("result", result);
+                    var arr = new Array(result.length);
+                    //console.log("hey");
+                    for (var i = 0; i < result.length; i++) {
+                        //console.log("result[i].date", result[i].date);
+                        var date = new Date(result[i].date);
+                        //console.log("date", date);
+                        var initYear = date.getFullYear();
+                        arr[i] = {
+                            date: monthNames[date.getMonth() - 1] + " " + date.getDate(),
+                            initYear,
+                            holiday: result[i].name
+                        };
+                    }
+                    //console.log("arr", arr);
+
+
+                    var holidays = arr;
+                    //Set holidays
+                    //console.log("Set holidays", holidays);
+                    for (var i = 0; i < holidays.length; i++) {
+                        var hd = new Date(Date.parse(holidays[i].date));
+                        //console.log("hd", hd);
+                        //console.log("currMonth", currMonth);
+                        if (hd.getMonth() === currMonth - 2) {
+                            id = '#day' + hd.getDate();
+                            setDayStyle(id, 'holiday');
+                            $(id + ' .dayTitle').html(holidays[i].holiday);
+                        }
+                    }
+
+
+                    return arr;
+                },
+                error: function (response) {
+                    console.log("error");
+                }
+            });
+
+        }
     };
 
 
     initTemplateCalendar('#calendar', initMonth, initYear);
 
+
+    
 });
+
+
