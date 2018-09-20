@@ -12,5 +12,8 @@ namespace EventsUs.Models
         [NotMapped]
         public bool isAdmin { get; set; }
 
+        public int Age { get; set; }
+        public string Country { get; set; }
+
     }
 }
