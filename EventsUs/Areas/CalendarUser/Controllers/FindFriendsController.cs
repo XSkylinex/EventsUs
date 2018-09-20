@@ -18,9 +18,23 @@ namespace EventsUs.Areas.CalendarUser.Controllers
 
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string searchString1, string searchString2, string searchString3)
         {
-            return View(_context.ApplicationUser.ToList());
+            var users = from e in _context.ApplicationUser
+                         select e;
+            if (!string.IsNullOrEmpty(searchString1))
+            {
+                users = users.Where(e => e.Email.Contains(searchString1));
+            }
+            if (!string.IsNullOrEmpty(searchString2))
+            {
+                users = users.Where(e => e.Age.Equals(searchString2));
+            }
+            if (!string.IsNullOrEmpty(searchString3))
+            {
+                users = users.Where(e => e.Country.Contains(searchString3));
+            }
+            return View(users);
         }
 
     }

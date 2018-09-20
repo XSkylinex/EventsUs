@@ -25,6 +25,16 @@
     </div>
 </div>
 
+@using (Html.BeginForm())
+{
+    <p>
+        Find by Id: @Html.TextBox("SearchString1")
+        Age: @Html.TextBox("SearchString2")
+        Country: @Html.TextBox("SearchString3")
+        <input type="submit" value="Search" />
+    </p>
+}
+
 <br />
 <div>
     <table class="table table-striped border">

@@ -12,7 +12,7 @@ namespace EventsUs.Models
         public String Name { get; set; }
         public String Description { get; set; }
         public string Location { get; set; }
-      public string YoutubeId { get; set; }
-        public string AdminId { get; set; }
+        public string YoutubeId { get; set; }
+        public string EventAdminId { get; set; }
     }
 }
