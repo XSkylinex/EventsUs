@@ -73,6 +73,7 @@ namespace EventsUs.Areas.CalendarUser.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(@event);
+                @event.AdminId = HttpContext.User.Identity.Name;
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }

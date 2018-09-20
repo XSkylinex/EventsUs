@@ -35,6 +35,8 @@
     <Compile Remove="Data\Migrations\20180919221800_test2.Designer.cs" />
     <Compile Remove="Migrations\20180920175700_globalevent.cs" />
     <Compile Remove="Migrations\20180920175700_globalevent.Designer.cs" />
+    <Compile Remove="Migrations\20180920202024_inital.cs" />
+    <Compile Remove="Migrations\20180920202024_inital.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

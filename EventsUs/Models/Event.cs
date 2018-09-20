@@ -13,5 +13,6 @@ namespace EventsUs.Models
         public String Description { get; set; }
         public string Location { get; set; }
       public string YoutubeId { get; set; }
+        public string AdminId { get; set; }
     }
 }
