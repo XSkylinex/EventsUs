@@ -37,6 +37,12 @@
     <Compile Remove="Migrations\20180920175700_globalevent.Designer.cs" />
     <Compile Remove="Migrations\20180920202024_inital.cs" />
     <Compile Remove="Migrations\20180920202024_inital.Designer.cs" />
+    <Compile Remove="Migrations\20180920210422_ianga.cs" />
+    <Compile Remove="Migrations\20180920210422_ianga.Designer.cs" />
+    <Compile Remove="Migrations\20180920210559_inad.cs" />
+    <Compile Remove="Migrations\20180920210559_inad.Designer.cs" />
+    <Compile Remove="Migrations\20180920210746_infa.cs" />
+    <Compile Remove="Migrations\20180920210746_infa.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
