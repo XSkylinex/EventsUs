@@ -1,0 +1,77 @@
+﻿@model IEnumerable<EventsUs.Models.ApplicationUser>
+@{
+    ViewData["Title"] = "Index";
+}
+<style type="text/css">.border { }
+
+ .table-info { }
+
+ .col-6 { }
+</style>
+
+<bar/><bar />
+
+
+<div Class="row ">
+    <div class="col-6">
+        <h2 class="text-info"> Admin Users List</h2>
+    </div>
+    <div class="col-6 text-right">
+        <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-info">new Admin User</a>
+    </div>
+</div>
+
+<br/>
+<div>
+    <table class="table table-striped border">
+        <tr class="table-info">
+            <th>
+                @Html.DisplayNameFor(m=>m.Name)
+            </th>
+        </tr>
+        <th>
+            @Html.DisplayNameFor(m=>m.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m=>m.PhoneNumber)
+        </th>
+        <th>
+            Disabled
+        </th>
+        <th> </th>
+
+            @foreach (var item in Model){
+                <tr>
+                    <td>
+                        @Html.DisplayFor(m=>item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m=>item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m=>item.PhoneNumber)
+                    </td>
+                    <td>
+                        @if (item.LockoutEnd != null && item.LockoutEnd > DateTime.Now){
+                            <label>Disabled</label>
+                        }
+                    </td>
+                    <td>
+                        @if (item.LockoutEnd == null || item.LockoutEnd < DateTime.Now){
+                            <a type="button" class="btn btn-primary" href="@Url.Action("Edit/"+ item.Id)">
+                                Update
+                            </a>
+                            <a type="button" class="btn btn-danger" href="@Url.Action("Delete/"+item.Id)">
+                                Delete
+                            </a>
+
+                        }
+                    </td>
+
+                </tr>
+            }
+    </table>
+
+</div>
+
+

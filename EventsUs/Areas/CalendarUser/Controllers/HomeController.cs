@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using System.Diagnostics;
 using EventsUs.Models;
-using EventsUs.Data;
+using Microsoft.AspNetCore.Mvc;
 
-namespace EventsUs.Controllers
+namespace EventsUs.Areas.CalendarUser.Controllers
 {
-    
+    [Area("CalendarUser")]
     public class HomeController : Controller
     {
-
+        public HomeController()
+        {
+        }
 
         public IActionResult Index()
         {

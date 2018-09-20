@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using EventsUs.Data;
 using EventsUs.Models;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
-namespace EventsUs.Controllers
+namespace EventsUs.Areas.CalendarUser.Controllers
 {
+    [Area("CalendarUser")]
     public class EventsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -37,10 +34,8 @@ namespace EventsUs.Controllers
             {
                 events = events.Where(e => e.Description.Contains(searchString3));
             }
-          
             return View(events);
             //return View(await _context.Event.ToListAsync());
-
         }
 
         // GET: Events/Details/5
@@ -72,12 +67,11 @@ namespace EventsUs.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Date,Name,Description,Location,PublicEvent,YoutubeId")]
+        public async Task<IActionResult> Create([Bind("Id,Date,Name,Description,Location,YoutubeId")]
             Event @event)
         {
             if (ModelState.IsValid)
             {
-                @event.adminId = HttpContext.User.Identity.Name;
                 _context.Add(@event);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -108,7 +102,7 @@ namespace EventsUs.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Date,Name,Description,Location,PublicEvent,YoutubeId")]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Date,Name,Description,Location,YoutubeId")]
             Event @event)
         {
             if (id != @event.Id)

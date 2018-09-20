@@ -25,14 +25,14 @@
     </environment>
     <script>
         function onEvent(day, month, year) {
-            herf = "/Events/getAllEventByDate/";
+            href = "CalendarUser/Events/getAllEventByDate/";
             console.log("day",day);
             //console.log("month",month);
             //console.log("year",year);
             //console.log("herf", herf);
             $.ajax({
                 type: "GET",
-                url: herf,
+                url: href,
                 data: {
                     "day": day,
                     "month": month,
@@ -54,14 +54,14 @@
 
 
         function allDetails(day, month, year) {
-            herf = "/Events/getAllEventDetails";
+            var href = "CalendarUser/Events/getAllEventDetails";
             //console.log("day", day);
             //console.log("month", month);
             //console.log("year", year);
             //console.log("herf", herf);
             $.ajax({
                 type: "GET",
-                url: herf,
+                url: href,
                 data: {
                     "day": day,
                     "month": month,

@@ -6,16 +6,33 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Home\**" />
+    <Content Remove="Views\Home\**" />
+    <EmbeddedResource Remove="Views\Home\**" />
+    <None Remove="Views\Home\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\00000000000000_CreateIdentitySchema.cs" />
+    <Compile Remove="Data\Migrations\00000000000000_CreateIdentitySchema.Designer.cs" />
+    <Compile Remove="Data\Migrations\20180906132640_initial.cs" />
+    <Compile Remove="Data\Migrations\20180906132640_initial.Designer.cs" />
+    <Compile Remove="Data\Migrations\20180916115233_initial3423423.cs" />
+    <Compile Remove="Data\Migrations\20180916115233_initial3423423.Designer.cs" />
+    <Compile Remove="Data\Migrations\20180916115916_ina2.cs" />
+    <Compile Remove="Data\Migrations\20180916115916_ina2.Designer.cs" />
+    <Compile Remove="Data\Migrations\20180916120301_inital31.cs" />
+    <Compile Remove="Data\Migrations\20180916120301_inital31.Designer.cs" />
+    <Compile Remove="Data\Migrations\20180916144651_initial3.cs" />
+    <Compile Remove="Data\Migrations\20180916144651_initial3.Designer.cs" />
     <Compile Remove="Data\Migrations\20180916150327_InitialCreate.cs" />
     <Compile Remove="Data\Migrations\20180916150327_InitialCreate.Designer.cs" />
-    <Compile Remove="Data\Migrations\20180916163727_usertable.cs" />
-    <Compile Remove="Data\Migrations\20180916163727_usertable.Designer.cs" />
-    <Compile Remove="Data\Migrations\20180916165336_adddemousers.cs" />
-    <Compile Remove="Data\Migrations\20180916165336_adddemousers.Designer.cs" />
-    <Compile Remove="Data\Migrations\20180916170556_adddemousers1.cs" />
-    <Compile Remove="Data\Migrations\20180916170556_adddemousers1.Designer.cs" />
-    <Compile Remove="Migrations\20180917181025_fix.cs" />
-    <Compile Remove="Migrations\20180917181025_fix.Designer.cs" />
+    <Compile Remove="Data\Migrations\20180919162132_addApplicationUseToDb_name.cs" />
+    <Compile Remove="Data\Migrations\20180919162132_addApplicationUseToDb_name.Designer.cs" />
+    <Compile Remove="Data\Migrations\20180919162423_addApplicationUseToDb_name.cs" />
+    <Compile Remove="Data\Migrations\20180919162423_addApplicationUseToDb_name.Designer.cs" />
+    <Compile Remove="Data\Migrations\20180919221800_test2.cs" />
+    <Compile Remove="Data\Migrations\20180919221800_test2.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,6 +46,41 @@
 
   <ItemGroup>
     <Folder Include="Areas\Identity\Services\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="Data\Migrations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Areas\Admin\Views\_ViewImports.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\_ViewStart.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\CalendarUser\Views\Events\Create.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\CalendarUser\Views\Events\Delete.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\CalendarUser\Views\Events\Details.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\CalendarUser\Views\Events\Edit.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\CalendarUser\Views\Events\getAllEventDetails.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\CalendarUser\Views\Events\Index.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\CalendarUser\Views\_ViewImports.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\CalendarUser\Views\_ViewStart.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
   </ItemGroup>
 
 </Project>

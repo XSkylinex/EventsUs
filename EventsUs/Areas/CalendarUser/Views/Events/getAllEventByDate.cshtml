@@ -18,11 +18,12 @@
     </style>
 </head>
 <body >
-    <div class="ex1">
-        @foreach (var item in Model)
-        {
-            <div class="contentItem"><a asp-action="Details" asp-route-id="@item.Id">@item.Name</a></div>
-        }
+<div class="ex1">
+    @foreach (var item in Model)
+    {
+        <div class="contentItem"><a asp-action="Details" asp-route-id="@item.Id">@item.Name</a></div>
+
+    }
 </div>
 </body>
 </html>

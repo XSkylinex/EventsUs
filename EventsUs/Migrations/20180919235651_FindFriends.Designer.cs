@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EventsUs.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180917185837_fix")]
-    partial class fix
+    [Migration("20180919235651_FindFriends")]
+    partial class FindFriends
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,11 +35,7 @@ namespace EventsUs.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<bool>("PublicEvent");
-
                     b.Property<string>("YoutubeId");
-
-                    b.Property<string>("adminId");
 
                     b.HasKey("Id");
 
@@ -50,6 +46,14 @@ namespace EventsUs.Migrations
                 {
                     b.Property<string>("ID")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Email");
+
+                    b.Property<DateTime>("LockoutEnd");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("PhoneNumber");
 
                     b.HasKey("ID");
 
@@ -178,11 +182,9 @@ namespace EventsUs.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128);
+                    b.Property<string>("LoginProvider");
 
-                    b.Property<string>("ProviderKey")
-                        .HasMaxLength(128);
+                    b.Property<string>("ProviderKey");
 
                     b.Property<string>("ProviderDisplayName");
 
@@ -213,11 +215,9 @@ namespace EventsUs.Migrations
                 {
                     b.Property<string>("UserId");
 
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128);
+                    b.Property<string>("LoginProvider");
 
-                    b.Property<string>("Name")
-                        .HasMaxLength(128);
+                    b.Property<string>("Name");
 
                     b.Property<string>("Value");
 
@@ -230,7 +230,7 @@ namespace EventsUs.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
-                    b.Property<int>("age");
+                    b.Property<string>("Name");
 
                     b.ToTable("ApplicationUser");
 

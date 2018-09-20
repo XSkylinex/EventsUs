@@ -1,18 +1,16 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Identity;
 
 namespace EventsUs.Models
 {
-    public class ApplicationUser : IdentityUser
-    {
+    public class ApplicationUser : IdentityUser {
 
-        public int age { get; set; }
 
-       // List<User> list_friednds = new List<User>();
-       // List<Event> list_events = new List<Event>();
+        [Display(Name = "User name")]
+        public string Name { get; set; }
+        [NotMapped]
+        public bool isAdmin { get; set; }
 
     }
 }
