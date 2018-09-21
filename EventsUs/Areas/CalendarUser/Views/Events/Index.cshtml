@@ -10,14 +10,33 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+
+
+
 @using (Html.BeginForm())
 {
+<select name="jBy">
+    <option value="">No Join</option>
+    <option value="Admin">Creator Event</option>
+    <option value="Place">Creator Country & Event Location</option>
+
+</select>
+
+    <input type="submit" value="Join By" />
+    <select name="gBy">
+        <option value="">No Group</option>
+        <option value="Location">Location</option>
+    </select>
+    <input type="submit" value="Group By" />
     <p>
         Find by Event Name: @Html.TextBox("SearchString1")
         Location: @Html.TextBox("SearchString2")
         Description: @Html.TextBox("SearchString3")
         <input type="submit" value="Search" />
     </p>
+
+
 }
 <table class="table">
     <thead>

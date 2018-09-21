@@ -1,5 +1,4 @@
-﻿//using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using EventsUs.Data;
 using EventsUs.Models;
@@ -19,15 +18,10 @@ namespace EventsUs.Areas.CalendarUser.Controllers
 
         }
 
-        public IActionResult Index(string searchString1, string searchString2, string searchString3, string gBy)
+        public IActionResult Index(string searchString1, string searchString2, string searchString3)
         {
-            //if (gBy == "Age")
-            //{
-            //    var userNamesByID =
-            //       from u in _context.ApplicationUser
-            //       group u by u.Age;
-            //    return View(userNamesByID);
-            //}
+
+
             var users = from e in _context.ApplicationUser
                          select e;
             if (!string.IsNullOrEmpty(searchString1))

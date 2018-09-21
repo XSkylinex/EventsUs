@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using EventsUs.Data;
 using EventsUs.Models;
@@ -18,8 +19,72 @@ namespace EventsUs.Areas.CalendarUser.Controllers
         }
 
         // GET: Events
-        public async Task<IActionResult> Index(string searchString1, string searchString2, string searchString3)
+        public async Task<IActionResult> Index(string searchString1, string searchString2, string searchString3,string gBy,string jBy)
         {
+            if (gBy == "Location")
+            {
+                var EventByID =
+                   from u in _context.Event
+                   group u by u.Location into g
+                   select new { Location = g.Key, count = g.Count(), g.First().Name };
+                var group = new List<Event>();
+                foreach (var t in EventByID)
+                {
+                    group.Add(new Event()
+                    {
+                        Name = "Event Counter:" + t.count.ToString(),
+                        Location = t.Location
+                    });
+                }
+
+                return View(group);
+            }
+            if (jBy == "Admin")
+            {
+                var join =
+                from u in _context.Event
+
+                join p in _context.Users on u.EventAdminId equals p.UserName
+
+                select new { u.Name, u.Location, p.UserName,u.Date,u.Description };
+
+                var UserList = new List<Event>();
+                foreach (var t in join)
+                {
+                    UserList.Add(new Event()
+                    {
+                        Name = t.Name,
+                        Location = t.Location,
+                        Date = t.Date,
+                        Description = t.Description
+
+                    });
+                }
+                return View(UserList);
+            }
+            if (jBy == "Place")
+            {
+                var join =
+                from u in _context.Event
+
+                join p in _context.ApplicationUser on u.Location equals p.Country
+
+                select new { u.Name, u.Location, p.UserName, u.Date, u.Description };
+
+                var UserList = new List<Event>();
+                foreach (var t in join)
+                {
+                    UserList.Add(new Event()
+                    {
+                        Name = t.Name,
+                        Location = t.Location,
+                        Date = t.Date,
+                        Description = t.Description
+
+                    });
+                }
+                return View(UserList);
+            }
             var events = from e in _context.Event
                             select e;
             if(!string.IsNullOrEmpty(searchString1))
