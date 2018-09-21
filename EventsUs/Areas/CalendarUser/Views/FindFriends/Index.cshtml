@@ -42,20 +42,24 @@
             <th>
                 @Html.DisplayNameFor(m => m.Name)
             </th>
-        <th>
-            @Html.DisplayNameFor(m => m.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(m => m.PhoneNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(m => m.Age)
+            <th>
+                @Html.DisplayNameFor(m => m.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.PhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Age)
 
-        </th>
-        <th> </th>
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Country)
 
-        @foreach (var item in Model)
-        {
+            </th>
+            <th> </th>
+
+            @foreach (var item in Model)
+            {
         <tr>
             <td>
                 @Html.DisplayFor(m => item.Name)
@@ -68,6 +72,9 @@
             </td>
             <td>
                 @Html.DisplayFor(m => item.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Country)
             </td>
             <td>
                 @if (item.LockoutEnd != null && item.LockoutEnd > DateTime.Now)
