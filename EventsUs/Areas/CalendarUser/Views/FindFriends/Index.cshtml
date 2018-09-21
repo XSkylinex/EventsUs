@@ -24,7 +24,10 @@
     <div class="col-6 text-right">
     </div>
 </div>
-
+<select name="gBy">
+    <option value="">No Group</option>
+    <option value="Age">Age</option>
+</select>
 @using (Html.BeginForm())
 {
     <p>
@@ -42,7 +45,6 @@
             <th>
                 @Html.DisplayNameFor(m => m.Name)
             </th>
-        </tr>
         <th>
             @Html.DisplayNameFor(m => m.Email)
         </th>
@@ -50,31 +52,35 @@
             @Html.DisplayNameFor(m => m.PhoneNumber)
         </th>
         <th>
-            Disabled
+            @Html.DisplayNameFor(m => m.Age)
+
         </th>
         <th> </th>
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(m => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(m => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(m => item.PhoneNumber)
-                </td>
-                <td>
-                    @if (item.LockoutEnd != null && item.LockoutEnd > DateTime.Now)
-                    {
-                        <label>Disabled</label>
-                    }
-                </td>
+        <tr>
+            <td>
+                @Html.DisplayFor(m => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Age)
+            </td>
+            <td>
+                @if (item.LockoutEnd != null && item.LockoutEnd > DateTime.Now)
+                {
+                    <label>Disabled</label>
+                }
+            </td>
 
 
-            </tr>
+        </tr>
         }
     </table>
 
