@@ -1,9 +1,11 @@
 ﻿using System.Diagnostics;
 using EventsUs.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventsUs.Areas.CalendarUser.Controllers
 {
+    
     [Area("CalendarUser")]
     public class HomeController : Controller
     {

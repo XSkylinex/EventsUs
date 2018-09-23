@@ -10,10 +10,12 @@
 <img src="https://image.ibb.co/k3keCz/log.png">
 
 <h2>Index</h2>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+@if ((User.IsInRole("Admin") || User.IsInRole("CalendarUser")))
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
 
 
 

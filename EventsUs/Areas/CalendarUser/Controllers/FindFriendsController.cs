@@ -2,11 +2,13 @@
 using System.Threading.Tasks;
 using EventsUs.Data;
 using EventsUs.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace EventsUs.Areas.CalendarUser.Controllers
 {
+    [Authorize(Roles = "Admin,CalendarUser")]
     [Area("CalendarUser")]
     public class FindFriendsController : Controller
     {

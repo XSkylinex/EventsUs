@@ -3,12 +3,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using EventsUs.Data;
 using EventsUs.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace EventsUs.Areas.CalendarUser.Controllers
 {
     [Area("CalendarUser")]
+    [Authorize(Roles = "Admin,CalendarUser")]
     public class EventsController : Controller
     {
         private readonly ApplicationDbContext _context;

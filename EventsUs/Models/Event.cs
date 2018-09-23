@@ -13,6 +13,7 @@ namespace EventsUs.Models
         public String Name { get; set; }
         public String Description { get; set; }
         public string Location { get; set; }
+        [Display(Name = "YouTube link")]
         public string YoutubeId { get; set; }
         public string EventAdminId { get; set; }
         [Display(Name = "Public")]

@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EventsUs.Data;
 using EventsUs.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EventsUs.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
     public class GlobalEventsController : Controller
     {
