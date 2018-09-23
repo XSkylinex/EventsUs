@@ -1,6 +1,9 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+@{
     ViewData["Title"] = "Home Page";
 }
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +27,8 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
     </environment>
     <script>
+
+        
         function onEvent(day, month, year) {
             href = "CalendarUser/Events/getAllEventByDate/";
             console.log("day",day);
@@ -37,6 +42,7 @@
                     "day": day,
                     "month": month,
                     "year": year,
+                    "username": "@UserManager.GetUserName(User)",
                 },
                 success: function (result) {
                     //console.log("success");
@@ -66,6 +72,7 @@
                     "day": day,
                     "month": month,
                     "year": year,
+                    "username": "@UserManager.GetUserName(User)",
                 },
                 success: function (result) {
                     //console.log("success");
@@ -82,12 +89,12 @@
         }
 
     </script>
-    
-    
-   
+
+
+
 </head>
 <body>
-<div id="calendar"></div>
+    <div id="calendar"></div>
 
     <partial name="_CookieConsentPartial" />
 

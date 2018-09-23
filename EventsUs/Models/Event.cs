@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,5 +15,7 @@ namespace EventsUs.Models
         public string Location { get; set; }
         public string YoutubeId { get; set; }
         public string EventAdminId { get; set; }
+        [Display(Name = "Public")]
+        public bool PublicPrivate { get; set; }
     }
 }

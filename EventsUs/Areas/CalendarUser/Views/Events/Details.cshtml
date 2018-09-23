@@ -1,4 +1,7 @@
-﻿@model EventsUs.Models.Event
+﻿@using Microsoft.AspNetCore.Identity
+@model EventsUs.Models.Event
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 
 @{
     ViewData["Title"] = "Details";
@@ -7,7 +10,7 @@
 <div>
 
     <h4>Event</h4>
-    
+
 
     <!DOCTYPE HTML>
     <script language="JavaScript" type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -250,7 +253,10 @@
 <hr />
 
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    @if (Model.EventAdminId == UserManager.GetUserName(User) || User.IsInRole("Admin"))
+    {
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+    }
     <a asp-action="Index">Back to List</a>
 </div>
 

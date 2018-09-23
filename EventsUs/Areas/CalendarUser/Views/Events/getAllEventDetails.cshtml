@@ -1,4 +1,7 @@
-﻿@model IEnumerable<EventsUs.Models.Event>
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<EventsUs.Models.Event>
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 
 @{
     ViewData["Title"] = "getAllEventDetails";
@@ -6,7 +9,9 @@
 
 @foreach (var item in Model)
 {
-    <div class="contentItem"><a asp-action="Details" asp-route-id="@item.Id">@item.Name</a></div>
+    
+       <div class="contentItem"><a asp-action="Details" asp-route-id="@item.Id">@item.Name</a></div>
+    
 }
 @{
     try

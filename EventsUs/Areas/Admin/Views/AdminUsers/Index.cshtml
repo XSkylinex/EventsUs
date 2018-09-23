@@ -8,56 +8,62 @@
 
  .col-6 { }
 </style>
+<center>
+    <div Class="row ">
+        <div class="col-6">
+            <h2 class="text-info"> Admin Users List</h2>
+        </div>
+        <br />
+        <div class="col-6 text-left">
+            <a asp-area="Admin" asp-controller="AdminUsers" asp-action="Graph" class="btn btn-info">Admin Data</a>
 
-<bar/><bar />
-
-
-<div Class="row ">
-    <div class="col-6">
-        <h2 class="text-info"> Admin Users List</h2>
+        </div>
+        <br />
     </div>
-    <div class="col-6 text-right">
-        <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-info">new Admin User</a>
-    </div>
-</div>
 
-<br/>
-<div>
-    <table class="table table-striped border">
-        <tr class="table-info">
-            <th>
-                @Html.DisplayNameFor(m=>m.Name)
-            </th>
-        </tr>
-        <th>
-            @Html.DisplayNameFor(m=>m.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(m=>m.PhoneNumber)
-        </th>
-        <th>
-            Disabled
-        </th>
-        <th> </th>
+    <div>
+        <table class="table table-striped border">
+            <tr class="table-info">
+                <th>
+                    @Html.DisplayNameFor(m => m.Name)
+                </th>
 
-            @foreach (var item in Model){
+                <th>
+                    @Html.DisplayNameFor(m => m.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.PhoneNumber)
+                </th>
+                <th>
+                    status
+                </th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model)
+            {
                 <tr>
                     <td>
-                        @Html.DisplayFor(m=>item.Name)
+                        @Html.DisplayFor(m => item.Name)
                     </td>
                     <td>
-                        @Html.DisplayFor(m=>item.Email)
+                        @Html.DisplayFor(m => item.Email)
                     </td>
                     <td>
-                        @Html.DisplayFor(m=>item.PhoneNumber)
+                        @Html.DisplayFor(m => item.PhoneNumber)
                     </td>
                     <td>
-                        @if (item.LockoutEnd != null && item.LockoutEnd > DateTime.Now){
+                        @if (item.LockoutEnd != null && item.LockoutEnd > DateTime.Now)
+                        {
                             <label>Disabled</label>
+                        }
+                        else
+                        {
+                            <label>Not Disabled</label>
                         }
                     </td>
                     <td>
-                        @if (item.LockoutEnd == null || item.LockoutEnd < DateTime.Now){
+                        @if (item.LockoutEnd == null || item.LockoutEnd < DateTime.Now)
+                        {
                             <a type="button" class="btn btn-primary" href="@Url.Action("Edit/"+ item.Id)">
                                 Update
                             </a>
@@ -70,8 +76,8 @@
 
                 </tr>
             }
-    </table>
+        </table>
 
-</div>
+    </div>
 
-
+</center>

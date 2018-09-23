@@ -1,4 +1,8 @@
-﻿@model IEnumerable<EventsUs.Models.Event>
+﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.CodeAnalysis.Differencing
+@model IEnumerable<EventsUs.Models.Event>
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 
 @{
     ViewData["Title"] = "Index";
@@ -16,12 +20,12 @@
 
 @using (Html.BeginForm())
 {
-<select name="jBy">
-    <option value="">No Join</option>
-    <option value="Admin">Creator Event</option>
-    <option value="Place">Creator Country & Event Location</option>
+    <select name="jBy">
+        <option value="">No Join</option>
+        <option value="Admin">Creator Event</option>
+        <option value="Place">Creator Country & Event Location</option>
 
-</select>
+    </select>
 
     <input type="submit" value="Join By" />
     <select name="gBy">
@@ -57,31 +61,39 @@
         </tr>
     </thead>
     <tbody>
+
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Date)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Location)
-                </td>
-                
-                @if (Html.Value("gBy") != "Location"&& Html.Value("jBy") != "Admin" && Html.Value("jBy") != "Place") {
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-                
-                }
-            </tr>
+            if (item.EventAdminId == @UserManager.GetUserName(User)|| item.PublicPrivate==true)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Location)
+                    </td>
+
+                    @if (Html.Value("gBy") != "Location" && Html.Value("jBy") != "Admin" && Html.Value("jBy") != "Place")
+                    {
+                        <td>
+                            @if (item.EventAdminId == UserManager.GetUserName(User) || User.IsInRole("Admin"))
+                            {
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit </a>
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            }
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        </td>
+
+                    }
+                </tr>
+            }
         }
     </tbody>
 </table>

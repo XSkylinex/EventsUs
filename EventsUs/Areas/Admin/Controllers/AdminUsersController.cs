@@ -96,6 +96,22 @@ namespace EventsUs.Areas.Admin.Controllers
 
 
         }
+        public IActionResult Graph()
+        {
+
+            return View(_db.ApplicationUser.ToList());
+        }
+        public JsonResult GraphJson()
+        {
+            var pl = from r in _db.ApplicationUser
+                orderby r.Country
+                group r by r.Country into grp
+                select new { area = grp.Key, value = grp.Count() };
+
+            return Json(pl.ToList());
+
+
+        }
 
     }
 

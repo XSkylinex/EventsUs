@@ -1,13 +1,16 @@
-﻿@model IEnumerable<EventsUs.Models.Event>
-
+﻿
+@using Microsoft.AspNetCore.Identity
+@model IEnumerable<EventsUs.Models.Event>
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 @*@{
-    Layout = null;
-}*@
+        Layout = null;
+    }*@
 
 <!DOCTYPE html>
 
 <html>
-<head >
+<head>
     <style>
         div.ex1 {
             background-color: lightblue;
@@ -17,13 +20,15 @@
         }
     </style>
 </head>
-<body >
-<div class="ex1">
-    @foreach (var item in Model)
-    {
-        <div class="contentItem"><a asp-action="Details" asp-route-id="@item.Id">@item.Name</a></div>
+<body>
+    <div class="ex1">
+        @foreach (var item in Model)
+        {
+            
+                <div class="contentItem"><a asp-action="Details" asp-route-id="@item.Id">@item.Name</a></div>
+           
 
-    }
-</div>
+        }
+    </div>
 </body>
 </html>

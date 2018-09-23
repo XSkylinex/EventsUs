@@ -132,7 +132,7 @@ namespace EventsUs.Areas.CalendarUser.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Date,Name,Description,Location,YoutubeId")]
+        public async Task<IActionResult> Create([Bind("Id,Date,Name,Description,Location,YoutubeId,PublicPrivate")]
             Event @event)
         {
             if (ModelState.IsValid)
@@ -168,7 +168,7 @@ namespace EventsUs.Areas.CalendarUser.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Date,Name,Description,Location,YoutubeId")]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Date,Name,Description,Location,YoutubeId,PublicPrivate")]
             Event @event)
         {
             if (id != @event.Id)
@@ -237,14 +237,15 @@ namespace EventsUs.Areas.CalendarUser.Controllers
 
 
         [HttpGet]
-        public ViewResult getAllEventByDate(int day, int month, int year){
-            var @event = _context.Event.Where(e => e.Date.Day == day && e.Date.Month == month && e.Date.Year == year);
+        public ViewResult getAllEventByDate(int day, int month, int year, string username)
+        {
+            var @event = _context.Event.Where(e => (e.Date.Day == day && e.Date.Month == month && e.Date.Year == year) && (e.PublicPrivate == true||e.EventAdminId.Equals(username)));
             return View(@event.ToList());
         }
 
         [HttpGet]
-        public ViewResult getAllEventDetails(int day, int month, int year){
-            var @event = _context.Event.Where(e => e.Date.Day == day && e.Date.Month == month && e.Date.Year == year).Take(4);
+        public ViewResult getAllEventDetails(int day, int month, int year,string username){
+            var @event = _context.Event.Where(e => e.Date.Day == day && e.Date.Month == month && e.Date.Year == year&& (e.EventAdminId.Equals(username) || e.PublicPrivate == true)).Take(4);
             return View(@event.ToList());
 
         }
