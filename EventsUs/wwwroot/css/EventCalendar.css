@@ -1,7 +1,13 @@
-﻿body {
+﻿
+body {
     background: white;
-    font-family: 'Georgia', sans-serif;
+    font-family: 'oblix';
     color: #d1d1d1;
+}
+
+@font-face {
+    font-family: 'oblix';
+    src: url('..fonts\ObelixProB-cyr.ttf');
 }
 
 table {
@@ -49,7 +55,7 @@ td {
     }
 
 .monthPicker {
-    color: #3d4a50;
+    color: #149257;
     position: absolute;
     background: white;
     width: 70%;
@@ -104,11 +110,13 @@ td {
 
 .monthPickerItem:hover {
     background: #eee;
+
 }
 
 .header {
     background: #13a01a;
     color: #fff;
+    text-shadow: 3px 2px #94A995;
 }
 
 .dayWrapper {
@@ -145,6 +153,7 @@ tr td:last-child .dayWrapper {
     margin-left: 10px;
     margin-top: 18px;
     text-transform: uppercase;
+
 }
 
     .dayTitle.holiday:before {
@@ -153,6 +162,7 @@ tr td:last-child .dayWrapper {
     }
 
 .dayBox {
+    text-shadow: 3px 2px #94A995;
     float: right;
     margin-top: 11px;
     margin-right: 5px;
@@ -162,6 +172,7 @@ tr td:last-child .dayWrapper {
     width: 40px;
     text-align: center;
     vertical-align: middle;
+    font-weight: bold;
 }
 
 .contentContainer {
@@ -173,7 +184,7 @@ tr td:last-child .dayWrapper {
 
 .contentItem {
     font-size: 17px;
-    font-family: helvetica;
+    font-family: 'oblix';
     color: #037691;
     margin: 5px 0px;
     background: #F8F8F8;
@@ -207,12 +218,12 @@ tr td:last-child .dayWrapper {
 }
 
 .dayContainer.selected {
-    border-color: #8B9093;
+    border-color: #149257;
 }
 
 .dayContainer.selected,
 .contentContainer.selected {
-    background: #3D4A50;
+    background: #149257;
 }
 
 .dayTitle.selected,
@@ -229,5 +240,5 @@ tr td:last-child .dayWrapper {
 }
 
 .contentItem.selected {
-    background: #656E73;
+    background: #73A991;
 }
