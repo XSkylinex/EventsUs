@@ -27,13 +27,16 @@ namespace EventsUs.Areas.CalendarUser.Controllers
             {
                 var EventByID =
                    from u in _context.Event
+                   where u.PublicPrivate.Equals(true)
                    group u by u.Location into g
+                  
                    select new { Location = g.Key, count = g.Count(), g.First().Name };
                 var group = new List<Event>();
                 foreach (var t in EventByID)
                 {
                     group.Add(new Event()
                     {
+                        PublicPrivate = true,
                         Name = "Event Counter:" + t.count.ToString(),
                         Location = t.Location
                     });
@@ -45,7 +48,7 @@ namespace EventsUs.Areas.CalendarUser.Controllers
             {
                 var join =
                 from u in _context.Event
-
+                where u.PublicPrivate.Equals(true)
                 join p in _context.Users on u.EventAdminId equals p.UserName
 
                 select new { u.Name, u.Location, p.UserName,u.Date,u.Description };
@@ -55,6 +58,7 @@ namespace EventsUs.Areas.CalendarUser.Controllers
                 {
                     UserList.Add(new Event()
                     {
+                        PublicPrivate = true,
                         Name = t.Name,
                         Location = t.Location,
                         Date = t.Date,
@@ -68,7 +72,7 @@ namespace EventsUs.Areas.CalendarUser.Controllers
             {
                 var join =
                 from u in _context.Event
-
+                where u.PublicPrivate.Equals(true)
                 join p in _context.ApplicationUser on u.Location equals p.Country
 
                 select new { u.Name, u.Location, p.UserName, u.Date, u.Description };
@@ -78,6 +82,7 @@ namespace EventsUs.Areas.CalendarUser.Controllers
                 {
                     UserList.Add(new Event()
                     {
+                        PublicPrivate = true,
                         Name = t.Name,
                         Location = t.Location,
                         Date = t.Date,
