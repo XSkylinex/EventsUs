@@ -83,6 +83,9 @@
     <Content Update="Areas\CalendarUser\Views\Events\getAllEventDetails.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Areas\CalendarUser\Views\Events\Graph.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Areas\CalendarUser\Views\Events\Index.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

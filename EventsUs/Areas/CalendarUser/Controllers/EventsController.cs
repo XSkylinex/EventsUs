@@ -20,8 +20,9 @@ namespace EventsUs.Areas.CalendarUser.Controllers
             _context = context;
         }
 
-        // GET: Events
-        public async Task<IActionResult> Index(string searchString1, string searchString2, string searchString3,string gBy,string jBy)
+
+    // GET: Events
+    public async Task<IActionResult> Index(string searchString1, string searchString2, string searchString3,string gBy,string jBy)
         {
             if (gBy == "Location")
             {
@@ -256,5 +257,25 @@ namespace EventsUs.Areas.CalendarUser.Controllers
             return View(@event.ToList());
 
         }
+
+        //events graph
+        public IActionResult Graph()
+        {
+
+            return View(_context.Event.ToList());
+        }
+        public JsonResult GraphJson()
+        {
+            var pl = from r in _context.Event
+                     orderby r.Date.Month
+                     where r.PublicPrivate == true
+                     group r by r.Date.Month into grp
+                     select new { area = grp.Key, value = grp.Count() };
+
+            return Json(pl.ToList());
+
+
+        }
     }
 }
+/// error= responseURL: "https://localhost:44351/CalendarUser/Events/GraphJson"
