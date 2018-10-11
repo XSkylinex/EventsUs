@@ -1,13 +1,16 @@
 ﻿
 body {
     background: white;
-    font-family: 'oblix';
+    font-family: 'socicon'; 
     color: #d1d1d1;
 }
 
 @font-face {
-    font-family: 'oblix';
-    src: url('..fonts\ObelixProB-cyr.ttf');
+    font-family: "socicon";
+    src: url("../fonts/socicon.eot");
+    src: url("../fonts/socicon.eot?#iefix") format("embedded-opentype"), url("../fonts/socicon.woff") format("woff"), url("../fonts/socicon.ttf") format("truetype"), url("../fonts/socicon.svg#socicon") format("svg");
+    font-weight: normal;
+    font-style: normal;
 }
 
 table {
@@ -43,7 +46,8 @@ td {
 }
 
 .monthSelector {
-    width: 400px;
+    font-family: 'socicon';
+        width: 400px;
     text-align: center;
     font-size: 40px;
     position: relative;
@@ -184,7 +188,7 @@ tr td:last-child .dayWrapper {
 
 .contentItem {
     font-size: 17px;
-    font-family: 'oblix';
+    font-family: 'socicon';
     color: #037691;
     margin: 5px 0px;
     background: #F8F8F8;
