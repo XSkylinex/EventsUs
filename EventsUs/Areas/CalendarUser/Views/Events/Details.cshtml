@@ -1,11 +1,22 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.ML;
+@using Microsoft.ML.Legacy;
+@using Microsoft.ML.Legacy.Data;
+@using Microsoft.ML.Legacy.Models;
+@using Microsoft.ML.Legacy.Trainers;
+@using Microsoft.ML.Legacy.Transforms;
 @model EventsUs.Models.Event
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
-
+@*<a href="~/Numberofcopartner.csv">~/Numberofcopartner.csv</a>
+    <a href="~/NumberofcopartnerPrediction.cs">~/NumberofcopartnerPrediction.cs</a>
+    <a href="~/Numberofcopartner.cs">~/Numberofcopartner.cs</a>*@
 @{
     ViewData["Title"] = "Details";
 }
+
+
+
 <h2>Details</h2>
 <div>
 
@@ -69,12 +80,7 @@
     <dd>
         @Html.DisplayFor(model => model.Location)
     </dd>
-    <dt>
-        @* @Html.DisplayNameFor(model => model.Private)*@
-    </dt>
-    <dd>
-        @*@Html.DisplayFor(model => model.AdminId)*@
-    </dd>
+
 </dl>
 </div>
 <!DOCTYPE html>
@@ -250,6 +256,21 @@
     }(document, 'script', 'facebook-jssdk'));
 </script>
 
+<hr />
+
+@using (Html.BeginForm())
+{
+    <p>
+        How many pepole you think that come: @Html.TextBox("ml")
+        <input type="submit" value="submit" />
+    </p>
+}
+<dl class="dl-horizontal">
+    <dt>
+        We Predict: @Html.DisplayFor(model => model.Predictpepole)
+    </dt>
+
+</dl>
 <hr />
 
 <div>

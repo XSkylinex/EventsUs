@@ -18,5 +18,6 @@ namespace EventsUs.Models
         public string EventAdminId { get; set; }
         [Display(Name = "Public")]
         public bool PublicPrivate { get; set; }
+        public int Predictpepole { get; set; }
     }
 }
