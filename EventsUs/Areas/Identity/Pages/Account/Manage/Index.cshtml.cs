@@ -99,6 +99,8 @@ namespace EventsUs.Areas.Identity.Pages.Account.Manage
                     var userId = await _userManager.GetUserIdAsync(user);
                     throw new InvalidOperationException($"Unexpected error occurred setting email for user with ID '{userId}'.");
                 }
+
+                
             }
 
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);

@@ -1,8 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.IO;
+using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using EventsUs.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -11,7 +15,7 @@ using Microsoft.Extensions.Logging;
 
 namespace EventsUs.Areas.Identity.Pages.Account
 {
-   // [Authorize(Roles = "Admin")]
+    // [Authorize(Roles = "Admin")]
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<IdentityUser> _signInManager;
@@ -61,6 +65,9 @@ namespace EventsUs.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
 
+            [Display(Name = "AvatarImage")]
+            public IFormFile AvatarImage { get; set; }
+
             [Required]
             public string Name { get; set; }
             [Required]
@@ -69,7 +76,7 @@ namespace EventsUs.Areas.Identity.Pages.Account
             public string Country { get; set; }
 
             [Required]
-            [Display (Name = "Phone Number")]
+            [Display(Name = "Phone Number")]
             public string PhoneNumber { get; set; }
 
             [Display(Name = "Admin")]
@@ -87,12 +94,13 @@ namespace EventsUs.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email , Name = Input.Name, PhoneNumber = Input.PhoneNumber ,Age = Input.Age , Country = Input.Country};
+                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email, Name = Input.Name, PhoneNumber = Input.PhoneNumber, Age = Input.Age, Country = Input.Country};
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
 
-                    if (!await _roleManager.RoleExistsAsync("CalendarUser")){
+                    if (!await _roleManager.RoleExistsAsync("CalendarUser"))
+                    {
                         await _roleManager.CreateAsync(new IdentityRole("CalendarUser"));
                     }
 
@@ -113,7 +121,7 @@ namespace EventsUs.Areas.Identity.Pages.Account
 
 
 
-                        _logger.LogInformation("User created a new account with password.");
+                    _logger.LogInformation("User created a new account with password.");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
 
@@ -135,10 +143,45 @@ namespace EventsUs.Areas.Identity.Pages.Account
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
+              
+                using (var memoryStream = new MemoryStream())
+                {
+                    await Input.AvatarImage.CopyToAsync(memoryStream);
+                    user.AvatarImage = memoryStream.ToArray();
+                }
             }
+            return Page();
 
             // If we got this far, something failed, redisplay form
-            return Page();
+
         }
     }
 }
+
+//[HttpPost("UploadFiles")]
+//public async Task<IActionResult> Post(List<IFormFile> files)
+//{
+//    long size = files.Sum(f => f.Length);
+
+//    // full path to file in temp location
+//    var filePath = Path.GetTempFileName();
+
+//    foreach (var formFile in files)
+//    {
+//        if (formFile.Length > 0)
+//        {
+//            using (var stream = new FileStream(filePath, FileMode.Create))
+//            {
+//                await formFile.CopyToAsync(stream);
+//            }
+//        }
+//    }
+
+//    // process uploaded files
+//    // Don't rely on or trust the FileName property without validation.
+
+//    return Ok(new { count = files.Count, size, filePath });
+//}
+
+
+

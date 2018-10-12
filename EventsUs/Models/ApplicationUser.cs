@@ -15,5 +15,7 @@ namespace EventsUs.Models
         public int Age { get; set; }
         public string Country { get; set; }
 
+        public byte[] AvatarImage { get; set; }
+
     }
 }
