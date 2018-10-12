@@ -26,10 +26,20 @@
             <div class="form-group">
                 <div class="checkbox">
                     <label>
-                        @*<input asp-for="Private" /> @Html.DisplayNameFor(model => model.Private)*@
+                        <input asp-for="PublicPrivate" /> @Html.DisplayNameFor(model => model.PublicPrivate)
                     </label>
                 </div>
             </div>
+            @{ DateTime today = DateTime.Today;
+                if (today > Model.Date)
+                {
+            <div class="form-group">
+                <b>Participants</b>
+                <input asp-for="Predictpepole" class="form-control" />
+                <span asp-validation-for="Predictpepole" class="text-danger"></span>
+            </div>
+                    }
+                }
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
                 <input asp-for="Description" class="form-control" />

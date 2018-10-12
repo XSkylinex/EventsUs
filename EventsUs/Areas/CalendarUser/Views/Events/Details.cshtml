@@ -260,17 +260,28 @@
 
 @using (Html.BeginForm())
 {
-    <p>
-        How many pepole you think that come: @Html.TextBox("ml")
-        <input type="submit" value="submit" />
-    </p>
-}
-<dl class="dl-horizontal">
-    <dt>
-        We Predict: @Html.DisplayFor(model => model.Predictpepole)
-    </dt>
+    DateTime today = DateTime.Today;
+    if (today > Model.Date)
+    {
+<dt>
+    Participants in the event: @Html.DisplayFor(model => model.Predictpepole)
+</dt>
+    }
+    else
+    {
+<p>
+    How many pepole you think that come: @Html.DisplayFor(model => model.Predictpepole)
+</p>
+<body>
+    <dl class="dl-horizontal">
+        <dt>
+            We Predict: @Html.DisplayFor(model => model.MLPredictpepole)
+        </dt>
 
-</dl>
+    </dl>
+</body>
+    }
+}
 <hr />
 
 <div>

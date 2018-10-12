@@ -118,7 +118,7 @@ namespace EventsUs.Areas.CalendarUser.Controllers
         }
 
         // GET: Events/Details/5
-        public async Task<IActionResult> Details(int? id, float ml)
+        public async Task<IActionResult> Details(int? id)
         {
 
             if (id == null)
@@ -132,7 +132,7 @@ namespace EventsUs.Areas.CalendarUser.Controllers
             {
                 return NotFound();
             }
-            if (ml > 0)
+            if (@event.Predictpepole >= 0)
             {
                 var pipeline = new LearningPipeline();
 
@@ -143,8 +143,8 @@ namespace EventsUs.Areas.CalendarUser.Controllers
                 var testData = new TextLoader("Numberofcopartner.csv").CreateFrom<Numberofcopartner>(useHeader: true, separator: ',');
                 var evaluator = new RegressionEvaluator();
                 var metrics = evaluator.Evaluate(modela, testData);
-                var prediction = modela.Predict(new Numberofcopartner { Sayyes = ml });
-                @event.Predictpepole = (int)prediction.RealCome;
+                var prediction = modela.Predict(new Numberofcopartner { Sayyes = @event.Predictpepole });
+                @event.MLPredictpepole = (int)prediction.RealCome;
             }
             return View(@event);
         }
@@ -160,12 +160,12 @@ namespace EventsUs.Areas.CalendarUser.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Date,Name,Description,Location,YoutubeId,PublicPrivate")]
+        public async Task<IActionResult> Create([Bind("Id,Date,Name,Description,Location,YoutubeId,PublicPrivate,Predictpepole")]
             Event @event)
         {
             if (ModelState.IsValid)
             {
-                @event.Predictpepole = 0;
+ 
                 _context.Add(@event);
                 @event.EventAdminId = HttpContext.User.Identity.Name;
                 await _context.SaveChangesAsync();
@@ -197,7 +197,7 @@ namespace EventsUs.Areas.CalendarUser.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Date,Name,Description,Location,YoutubeId,PublicPrivate")]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Date,Name,Description,Location,YoutubeId,PublicPrivate,Predictpepole")]
             Event @event)
         {
             if (id != @event.Id)
