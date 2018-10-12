@@ -65,8 +65,9 @@ namespace EventsUs.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
 
+            [DataType(DataType.Upload)]
             [Display(Name = "AvatarImage")]
-            public IFormFile AvatarImage { get; set; }
+            public IFormFile files { get; set; }
 
             [Required]
             public string Name { get; set; }
@@ -93,8 +94,16 @@ namespace EventsUs.Areas.Identity.Pages.Account
         {
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
+
+
             {
+                
                 var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email, Name = Input.Name, PhoneNumber = Input.PhoneNumber, Age = Input.Age, Country = Input.Country};
+                using (var memoryStream = new MemoryStream())
+                {
+                    await Input.files.CopyToAsync(memoryStream);
+                    user.AvatarImage = memoryStream.ToArray();
+                }
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
@@ -118,7 +127,7 @@ namespace EventsUs.Areas.Identity.Pages.Account
                         await _userManager.AddToRoleAsync(user, "CalendarUser");
                     }
 
-
+                   
 
 
                     _logger.LogInformation("User created a new account with password.");
@@ -144,11 +153,7 @@ namespace EventsUs.Areas.Identity.Pages.Account
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
               
-                using (var memoryStream = new MemoryStream())
-                {
-                    await Input.AvatarImage.CopyToAsync(memoryStream);
-                    user.AvatarImage = memoryStream.ToArray();
-                }
+                
             }
             return Page();
 
@@ -179,8 +184,8 @@ namespace EventsUs.Areas.Identity.Pages.Account
 
 //    // process uploaded files
 //    // Don't rely on or trust the FileName property without validation.
-
-//    return Ok(new { count = files.Count, size, filePath });
+    
+//    //return Ok(new { count = files.Count, size, filePath });
 //}
 
 
