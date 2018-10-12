@@ -3,6 +3,8 @@
 @{
     ViewData["Title"] = "Index";
 }
+<img src="https://image.ibb.co/k3keCz/log.png">
+
 <style type="text/css">
     .border {
     }
@@ -60,34 +62,34 @@
 
             @foreach (var item in Model)
             {
-        <tr>
-            <td>
-                @Html.DisplayFor(m => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(m => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(m => item.PhoneNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(m => item.Age)
-            </td>
-            <td>
-                @Html.DisplayFor(m => item.Country)
-            </td>
-            <td>
-                @if (item.LockoutEnd != null && item.LockoutEnd > DateTime.Now)
-                {
-                    <label>Disabled</label>
-                }
-            </td>
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.PhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Age)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Country)
+                </td>
+                <td>
+                    @if (item.LockoutEnd != null && item.LockoutEnd > DateTime.Now)
+                    {
+                        <label>Disabled</label>
+                    }
+                </td>
 
 
-        </tr>
+            </tr>
         }
-    </table>
+        </table>
 
-</div>
+    </div>
 
 

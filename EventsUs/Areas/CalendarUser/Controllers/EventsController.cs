@@ -6,6 +6,11 @@ using EventsUs.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.ML.Legacy;
+using Microsoft.ML.Legacy.Data;
+using Microsoft.ML.Legacy.Models;
+using Microsoft.ML.Legacy.Trainers;
+using Microsoft.ML.Legacy.Transforms;
 
 namespace EventsUs.Areas.CalendarUser.Controllers
 {
@@ -21,9 +26,10 @@ namespace EventsUs.Areas.CalendarUser.Controllers
         }
 
 
-    // GET: Events
-    public async Task<IActionResult> Index(string searchString1, string searchString2, string searchString3,string gBy,string jBy)
+        // GET: Events
+        public async Task<IActionResult> Index(string searchString1, string searchString2, string searchString3, string gBy, string jBy)
         {
+   
             if (gBy == "Location")
             {
                 var EventByID =
@@ -114,18 +120,32 @@ namespace EventsUs.Areas.CalendarUser.Controllers
         // GET: Events/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+
             if (id == null)
             {
                 return NotFound();
             }
-
+     
             var @event = await _context.Event
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (@event == null)
             {
                 return NotFound();
             }
+            if (@event.Predictpepole >= 0)
+            {
+                var pipeline = new LearningPipeline();
 
+                pipeline.Add(new TextLoader("Numberofcopartner.csv").CreateFrom<Numberofcopartner>(useHeader: true, separator: ','));
+                pipeline.Add(new ColumnConcatenator("Features", "Sayyes"));
+                pipeline.Add(new GeneralizedAdditiveModelRegressor());
+                var modela = pipeline.Train<Numberofcopartner, NumberofcopartnerPrediction>();
+                var testData = new TextLoader("Numberofcopartner.csv").CreateFrom<Numberofcopartner>(useHeader: true, separator: ',');
+                var evaluator = new RegressionEvaluator();
+                var metrics = evaluator.Evaluate(modela, testData);
+                var prediction = modela.Predict(new Numberofcopartner { Sayyes = @event.Predictpepole });
+                @event.MLPredictpepole = (int)prediction.RealCome;
+            }
             return View(@event);
         }
 
@@ -140,11 +160,12 @@ namespace EventsUs.Areas.CalendarUser.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Date,Name,Description,Location,YoutubeId,PublicPrivate")]
+        public async Task<IActionResult> Create([Bind("Id,Date,Name,Description,Location,YoutubeId,PublicPrivate,Predictpepole")]
             Event @event)
         {
             if (ModelState.IsValid)
             {
+ 
                 _context.Add(@event);
                 @event.EventAdminId = HttpContext.User.Identity.Name;
                 await _context.SaveChangesAsync();
@@ -176,7 +197,7 @@ namespace EventsUs.Areas.CalendarUser.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Date,Name,Description,Location,YoutubeId,PublicPrivate")]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Date,Name,Description,Location,YoutubeId,PublicPrivate,Predictpepole")]
             Event @event)
         {
             if (id != @event.Id)

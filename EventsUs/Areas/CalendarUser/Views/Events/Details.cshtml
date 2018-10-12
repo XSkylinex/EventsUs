@@ -1,11 +1,22 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.ML;
+@using Microsoft.ML.Legacy;
+@using Microsoft.ML.Legacy.Data;
+@using Microsoft.ML.Legacy.Models;
+@using Microsoft.ML.Legacy.Trainers;
+@using Microsoft.ML.Legacy.Transforms;
 @model EventsUs.Models.Event
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
-
+@*<a href="~/Numberofcopartner.csv">~/Numberofcopartner.csv</a>
+    <a href="~/NumberofcopartnerPrediction.cs">~/NumberofcopartnerPrediction.cs</a>
+    <a href="~/Numberofcopartner.cs">~/Numberofcopartner.cs</a>*@
 @{
     ViewData["Title"] = "Details";
 }
+
+
+
 <h2>Details</h2>
 <div>
 
@@ -85,12 +96,7 @@
     <dd>
         @Html.DisplayFor(model => model.Location)
     </dd>
-    <dt>
-        @* @Html.DisplayNameFor(model => model.Private)*@
-    </dt>
-    <dd>
-        @*@Html.DisplayFor(model => model.AdminId)*@
-    </dd>
+
 </dl>
 </div>
 <!DOCTYPE html>
@@ -171,9 +177,6 @@
             height: 100%;
             margin: 0;
             padding: 0;
-        
-      
-        
         }
     </style>
     <script>
@@ -276,6 +279,40 @@
 </script>
 
 <hr />
+
+@using (Html.BeginForm())
+{
+    DateTime today = DateTime.Today;
+    if (today > Model.Date)
+    {
+        <div>
+            <dt>
+                Participants in the event: @Html.DisplayFor(model => model.Predictpepole)
+            </dt>
+        </div>
+    }
+    else
+    {
+        <div>
+
+            <p>
+                How many pepole you think that come: @Html.DisplayFor(model => model.Predictpepole)
+            </p>
+        </div>
+        <div>
+            <p>
+                We Predict: @Html.DisplayFor(model => model.MLPredictpepole)
+            </p>
+        </div>
+
+    }
+}
+
+
+
+<hr />
+
+
 
 <div>
     @if (Model.EventAdminId == UserManager.GetUserName(User) || User.IsInRole("Admin"))
