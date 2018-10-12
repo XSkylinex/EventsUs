@@ -177,9 +177,6 @@
             height: 100%;
             margin: 0;
             padding: 0;
-        
-      
-        
         }
     </style>
     <script>
@@ -288,26 +285,34 @@
     DateTime today = DateTime.Today;
     if (today > Model.Date)
     {
-<dt>
-    Participants in the event: @Html.DisplayFor(model => model.Predictpepole)
-</dt>
+        <div>
+            <dt>
+                Participants in the event: @Html.DisplayFor(model => model.Predictpepole)
+            </dt>
+        </div>
     }
     else
     {
-<p>
-    How many pepole you think that come: @Html.DisplayFor(model => model.Predictpepole)
-</p>
-<body>
-    <dl class="dl-horizontal">
-        <dt>
-            We Predict: @Html.DisplayFor(model => model.MLPredictpepole)
-        </dt>
+        <div>
 
-    </dl>
-</body>
+            <p>
+                How many pepole you think that come: @Html.DisplayFor(model => model.Predictpepole)
+            </p>
+        </div>
+        <div>
+            <p>
+                We Predict: @Html.DisplayFor(model => model.MLPredictpepole)
+            </p>
+        </div>
+
     }
 }
+
+
+
 <hr />
+
+
 
 <div>
     @if (Model.EventAdminId == UserManager.GetUserName(User) || User.IsInRole("Admin"))
