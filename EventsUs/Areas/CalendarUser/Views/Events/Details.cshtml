@@ -285,6 +285,10 @@
 @using (Html.BeginForm())
 {
     DateTime today = DateTime.Today;
+    if (today > Model.Date)
+    {
+    <p>Now you can add how many participants</p>
+    }
     if (today > Model.Date && Model.Realcome != 0)
     {
         using (StreamWriter writetext =  File.AppendText("Numberofcopartner.csv"))
@@ -302,12 +306,12 @@
         <div>
 
             <p>
-                How many pepole you think that come: @Html.DisplayFor(model => model.Predictpepole)
+                Invented: @Html.DisplayFor(model => model.Predictpepole)
             </p>
         </div>
         <div>
             <p>
-                We Predict: @Html.DisplayFor(model => model.MLPredictpepole)
+                EventUs predict participant: @Html.DisplayFor(model => model.MLPredictpepole)
             </p>
         </div>
 
