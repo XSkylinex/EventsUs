@@ -1,12 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
-using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using EventsUs.Data;
+using EventsUs.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace EventsUs.Areas.Identity.Pages.Account.Manage
@@ -16,6 +21,7 @@ namespace EventsUs.Areas.Identity.Pages.Account.Manage
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly IEmailSender _emailSender;
+       
 
         public IndexModel(
             UserManager<IdentityUser> userManager,
@@ -25,6 +31,7 @@ namespace EventsUs.Areas.Identity.Pages.Account.Manage
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
+            
         }
         public string Username { get; set; }
 
@@ -53,11 +60,18 @@ namespace EventsUs.Areas.Identity.Pages.Account.Manage
 
         public async Task<IActionResult> OnGetAsync()
         {
+
+       
+
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
+      
+            //byte[] imgus = us.AvatarImage;
+            
+
 
             var userName = await _userManager.GetUserNameAsync(user);
             var email = await _userManager.GetEmailAsync(user);
@@ -73,6 +87,7 @@ namespace EventsUs.Areas.Identity.Pages.Account.Manage
             };
 
             IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
+
 
             return Page();
         }
@@ -99,6 +114,8 @@ namespace EventsUs.Areas.Identity.Pages.Account.Manage
                     var userId = await _userManager.GetUserIdAsync(user);
                     throw new InvalidOperationException($"Unexpected error occurred setting email for user with ID '{userId}'.");
                 }
+
+                
             }
 
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
@@ -149,3 +166,5 @@ namespace EventsUs.Areas.Identity.Pages.Account.Manage
         }
     }
 }
+
+

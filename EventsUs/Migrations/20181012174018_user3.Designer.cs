@@ -4,14 +4,16 @@ using EventsUs.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EventsUs.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181012174018_user3")]
+    partial class user3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,15 +35,9 @@ namespace EventsUs.Migrations
 
                     b.Property<string>("Location");
 
-                    b.Property<int>("MLPredictpepole");
-
                     b.Property<string>("Name");
 
-                    b.Property<int>("Predictpepole");
-
                     b.Property<bool>("PublicPrivate");
-
-                    b.Property<int>("Realcome");
 
                     b.Property<string>("YoutubeId");
 
