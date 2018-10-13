@@ -6,8 +6,10 @@
 @using Microsoft.ML.Legacy.Trainers;
 @using Microsoft.ML.Legacy.Transforms;
 @model EventsUs.Models.Event
-@inject SignInManager<ApplicationUser> SignInManager
-@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@using System;
+@using System.IO;
 @*<a href="~/Numberofcopartner.csv">~/Numberofcopartner.csv</a>
     <a href="~/NumberofcopartnerPrediction.cs">~/NumberofcopartnerPrediction.cs</a>
     <a href="~/Numberofcopartner.cs">~/Numberofcopartner.cs</a>*@
@@ -285,9 +287,17 @@
     DateTime today = DateTime.Today;
     if (today > Model.Date)
     {
+    <p>Now you can add how many participants</p>
+    }
+    if (today > Model.Date && Model.Realcome != 0)
+    {
+        using (StreamWriter writetext =  File.AppendText("Numberofcopartner.csv"))
+        {
+            writetext.WriteLine(Model.Predictpepole+","+Model.Realcome);
+        }
         <div>
             <dt>
-                Participants in the event: @Html.DisplayFor(model => model.Predictpepole)
+                Participants in the event: @Html.DisplayFor(model => model.Realcome)
             </dt>
         </div>
     }
@@ -296,12 +306,12 @@
         <div>
 
             <p>
-                How many pepole you think that come: @Html.DisplayFor(model => model.Predictpepole)
+                Invented: @Html.DisplayFor(model => model.Predictpepole)
             </p>
         </div>
         <div>
             <p>
-                We Predict: @Html.DisplayFor(model => model.MLPredictpepole)
+                EventUs predict participant: @Html.DisplayFor(model => model.MLPredictpepole)
             </p>
         </div>
 
