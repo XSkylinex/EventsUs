@@ -8,6 +8,8 @@
 @model EventsUs.Models.Event
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
+@using System;
+@using System.IO;
 @*<a href="~/Numberofcopartner.csv">~/Numberofcopartner.csv</a>
     <a href="~/NumberofcopartnerPrediction.cs">~/NumberofcopartnerPrediction.cs</a>
     <a href="~/Numberofcopartner.cs">~/Numberofcopartner.cs</a>*@
@@ -283,11 +285,15 @@
 @using (Html.BeginForm())
 {
     DateTime today = DateTime.Today;
-    if (today > Model.Date)
+    if (today > Model.Date && Model.Realcome != 0)
     {
+        using (StreamWriter writetext =  File.AppendText("Numberofcopartner.csv"))
+        {
+            writetext.WriteLine(Model.Predictpepole+","+Model.Realcome);
+        }
         <div>
             <dt>
-                Participants in the event: @Html.DisplayFor(model => model.Predictpepole)
+                Participants in the event: @Html.DisplayFor(model => model.Realcome)
             </dt>
         </div>
     }

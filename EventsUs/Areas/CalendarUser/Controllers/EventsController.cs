@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using EventsUs.Data;
@@ -132,7 +133,8 @@ namespace EventsUs.Areas.CalendarUser.Controllers
             {
                 return NotFound();
             }
-            if (@event.Predictpepole >= 0)
+
+            if (@event.Predictpepole >= 0 && @event.Realcome==0)
             {
                 var pipeline = new LearningPipeline();
 
@@ -160,7 +162,7 @@ namespace EventsUs.Areas.CalendarUser.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Date,Name,Description,Location,YoutubeId,PublicPrivate,Predictpepole")]
+        public async Task<IActionResult> Create([Bind("Id,Date,Name,Description,Location,YoutubeId,PublicPrivate,Predictpepole,Realcome")]
             Event @event)
         {
             if (ModelState.IsValid)
@@ -168,6 +170,7 @@ namespace EventsUs.Areas.CalendarUser.Controllers
  
                 _context.Add(@event);
                 @event.EventAdminId = HttpContext.User.Identity.Name;
+                @event.Realcome = 0;
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -197,7 +200,7 @@ namespace EventsUs.Areas.CalendarUser.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Date,Name,Description,Location,YoutubeId,PublicPrivate,Predictpepole")]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Date,Name,Description,Location,YoutubeId,PublicPrivate,Predictpepole,Realcome")]
             Event @event)
         {
             if (id != @event.Id)
@@ -226,7 +229,7 @@ namespace EventsUs.Areas.CalendarUser.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-
+       
             return View(@event);
         }
 

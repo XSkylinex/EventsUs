@@ -20,5 +20,7 @@ namespace EventsUs.Models
         public bool PublicPrivate { get; set; }
         public int Predictpepole { get; set; }
         public int MLPredictpepole { get; set; }
+        public int Realcome { get; set; }
+
     }
 }

@@ -33,13 +33,19 @@
             @{ DateTime today = DateTime.Today;
                 if (today > Model.Date)
                 {
-            <div class="form-group">
-                <b>Participants</b>
-                <input asp-for="Predictpepole" class="form-control" />
-                <span asp-validation-for="Predictpepole" class="text-danger"></span>
-            </div>
-                    }
+                    <div class="form-group">
+                        <b>How many come to the event?</b>
+                        <input asp-for="Realcome" class="form-control" />
+                        <span asp-validation-for="Realcome" class="text-danger"></span>
+                    </div>
                 }
+                else
+                {
+                    <b>how many think will come?</b>
+                    <input asp-for="Predictpepole" class="form-control" />
+                    <span asp-validation-for="Predictpepole" class="text-danger"></span>
+                }
+            }
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
                 <input asp-for="Description" class="form-control" />
