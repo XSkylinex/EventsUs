@@ -25,25 +25,30 @@
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             @{ DateTime today = DateTime.Today;
-                                if (today > Model.Date)
-                                {
-                <div class="form-group">
-                    <b>How many come to the event?</b>
-                    <input asp-for="Realcome" class="form-control" />
-                    <span asp-validation-for="Realcome" class="text-danger"></span>
-                </div>
-                                }
-                                else
-                                {
-                <b>Invented</b>
-                <input asp-for="Predictpepole" class="form-control" />
-                <span asp-validation-for="Predictpepole" class="text-danger"></span>
-                                }
+                if (today > Model.Date)
+                {
+                    <div class="form-group">
+                        <b>How many come to the event?</b>
+                        <input asp-for="Realcome" class="form-control" />
+                        <span asp-validation-for="Realcome" class="text-danger"></span>
+                    </div>
+                }
+                else
+                {
+                    <b>Invented</b>
+                    <input asp-for="Predictpepole" class="form-control" />
+                    <span asp-validation-for="Predictpepole" class="text-danger"></span>
+                }
             }
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PublicPrivate" class="control-label"></label>
+                <input asp-for="PublicPrivate" class="checkbox" />
+                <span asp-validation-for="PublicPrivate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Location" class="control-label"></label>
