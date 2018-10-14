@@ -191,7 +191,7 @@ namespace EventsUs.Areas.CalendarUser.Controllers
             {
                 return NotFound();
             }
-
+            @event.EventAdminId = HttpContext.User.Identity.Name;
             return View(@event);
         }
 
@@ -213,6 +213,7 @@ namespace EventsUs.Areas.CalendarUser.Controllers
                 try
                 {
                     _context.Update(@event);
+                    @event.EventAdminId = HttpContext.User.Identity.Name;
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -229,7 +230,8 @@ namespace EventsUs.Areas.CalendarUser.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-       
+            
+
             return View(@event);
         }
 
