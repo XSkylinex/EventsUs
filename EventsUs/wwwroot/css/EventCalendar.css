@@ -7,8 +7,8 @@ body {
 
 @font-face {
     font-family: "socicon";
-    src: url("../fonts/socicon.eot");
-    src: url("../fonts/socicon.eot?#iefix") format("embedded-opentype"), url("../fonts/socicon.woff") format("woff"), url("../fonts/socicon.ttf") format("truetype"), url("../fonts/socicon.svg#socicon") format("svg");
+    src: url("/css/fonts/socicon.eot");
+    src: url("/css/fonts/socicon.eot?#iefix") format("embedded-opentype"), url("/css/fonts/socicon.woff") format("woff"), url("/css/fonts/socicon.ttf") format("truetype"), url("/css/fonts/socicon.svg#socicon") format("svg");
     font-weight: normal;
     font-style: normal;
 }

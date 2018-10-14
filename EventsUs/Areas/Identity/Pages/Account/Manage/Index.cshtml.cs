@@ -18,14 +18,14 @@ namespace EventsUs.Areas.Identity.Pages.Account.Manage
 {
     public partial class IndexModel : PageModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
        
 
         public IndexModel(
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager,
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender)
         {
             _userManager = userManager;
@@ -51,7 +51,8 @@ namespace EventsUs.Areas.Identity.Pages.Account.Manage
             [EmailAddress]
             public string Email { get; set; }
             public string Name { get; set; }
-
+           
+            public byte[] image { get; set; } 
 
             [Phone]
             [Display(Name  = "Phone number")]
@@ -62,14 +63,15 @@ namespace EventsUs.Areas.Identity.Pages.Account.Manage
         {
 
        
-
+            
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
-      
-            //byte[] imgus = us.AvatarImage;
+
+           
+
             
 
 
@@ -83,7 +85,8 @@ namespace EventsUs.Areas.Identity.Pages.Account.Manage
             Input = new InputModel
             {
                 Email = email,
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                image = user.AvatarImage
             };
 
             IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
