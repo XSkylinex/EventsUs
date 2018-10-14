@@ -42,6 +42,7 @@ namespace EventsUs.Areas.CalendarUser.Controllers
                 var group = new List<Event>();
                 foreach (var t in EventByID)
                 {
+                    
                     group.Add(new Event()
                     {
                         PublicPrivate = true,
@@ -57,7 +58,7 @@ namespace EventsUs.Areas.CalendarUser.Controllers
                 var join =
                 from u in _context.Event
                 where u.PublicPrivate.Equals(true)
-                join p in _context.Users on u.EventAdminId equals p.UserName
+                join p in _context.ApplicationUser on u.EventAdminId equals p.Email
 
                 select new { u.Name, u.Location, p.UserName,u.Date,u.Description };
 
@@ -78,12 +79,12 @@ namespace EventsUs.Areas.CalendarUser.Controllers
             }
             if (jBy == "Place")
             {
-                var join =
+                var join =(
                 from u in _context.Event
                 where u.PublicPrivate.Equals(true)
                 join p in _context.ApplicationUser on u.Location equals p.Country
 
-                select new { u.Name, u.Location, p.UserName, u.Date, u.Description };
+                select new { u.Name, u.Location, p.UserName, u.Date, u.Description }).Distinct();
 
                 var UserList = new List<Event>();
                 foreach (var t in join)
@@ -171,6 +172,10 @@ namespace EventsUs.Areas.CalendarUser.Controllers
                 _context.Add(@event);
                 @event.EventAdminId = HttpContext.User.Identity.Name;
                 @event.Realcome = 0;
+                if(@event.Predictpepole<0)
+                {
+                    @event.Predictpepole = 0;
+                }
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
